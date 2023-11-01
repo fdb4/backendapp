@@ -40,9 +40,20 @@ class ClientsRescource(Resource):
         clients = Clients.query.all()
         return clients
 
+    @api.marshal_list_with(client_model)
     def post(self):
         """Add a new client"""
-        pass
+        data=request.get_json()
+        new_client=Clients(
+            client_id=data.get('client_id'),
+            email=data.get('email'),
+            password=data.get('password'),
+            coachID=data.get('coachID'),
+            firstname=data.get('firstname'),
+            lastname=data.get('lastname')
+        )
+        new_client.save()
+        return new_client,201
 
 
 @api.route('/clients/<int:client_id>')
