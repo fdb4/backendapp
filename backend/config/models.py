@@ -6,7 +6,7 @@ class Clients(db.Model):
     client_id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(45), nullable=False)
     password = db.Column(db.String(45), nullable=False)
-    coachID = db.Column(db.Integer, nullable=False)
+    coachID = db.Column(db.Integer)
     firstname = db.Column(db.String(45), nullable=False)
     lastname = db.Column(db.String(45), nullable=False)
 
