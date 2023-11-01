@@ -58,17 +58,31 @@ class ClientsRescource(Resource):
 
 @api.route('/clients/<int:client_id>')
 class ClientResource(Resource):
-    def get(self, id):
+    @api.marshal_with(client_model)
+    def get(self, client_id):
         """Get a client by id"""
-        pass
+        client=Clients.query.get_or_404(client_id)
+        print(client)
 
-    def put(self, id):
+        return client
+
+    @api.marshal_with(client_model)
+    def put(self, client_id):
         """Update a client by id"""
-        pass
+        client_to_update=Clients.query.get_or_404(client_id)
 
-    def delete(self, id):
+        data=request.get_json()
+
+        client_to_update.update(data.get('email'), data.get('password'), data.get('firstname'), data.get('lastname'))
+
+        return client_to_update
+
+    @api.marshal_with(client_model)
+    def delete(self, client_id):
         """Delete client by Id"""
-        pass
+        client_to_delete=Clients.query.get_or_404(client_id)
+        client_to_delete.delete()
+        return client_to_delete
 
 
 @app.shell_context_processor
