@@ -57,6 +57,7 @@ class ClientResource(Resource):
 
     def delete(self, id):
         """Delete client by Id"""
+        pass
 
 
 @app.shell_context_processor
