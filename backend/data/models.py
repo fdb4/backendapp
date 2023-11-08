@@ -1,12 +1,11 @@
-from exts import db
+from .exts import db
 from uuid import uuid1
 
 class Clients(db.Model):
-    __tablename__="Clients"
-    client_id=db.Column(db.Integer,primary_key=True, autoincrement=True)
+    __tablename__="clients"
+    clientID=db.Column(db.Integer,primary_key=True, autoincrement=True)
     email=db.Column(db.String(45), nullable=False, unique=True)
     password=db.Column(db.String(128), nullable=False)
-    coachID=db.Column(db.Integer)
     firstname=db.Column(db.String(45), nullable=False)
     lastname = db.Column(db.String(45), nullable=False)
 
