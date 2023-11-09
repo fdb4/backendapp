@@ -8,6 +8,11 @@ class Clients(db.Model):
     password=db.Column(db.String(128), nullable=False)
     firstname=db.Column(db.String(45), nullable=False)
     lastname = db.Column(db.String(45), nullable=False)
+    # workoutgoalID=db.Column(db.Integer, ForeignKey(workoutgoalID))
+    geninfoID=db.Column(db.Integer,db.ForeignKey("generalinfo.generalinfoID"))
+    # coachexpID=db.Column(db.Integer,foreign_key=True)
+    lastModified=db.Column(db.DateTime)
+    
 
     def __repr__(self):
         return f"<Clients (self.firstname) >"
@@ -27,7 +32,7 @@ class Clients(db.Model):
         self.lastname = lastname
 
         db.session.commit()
-    
+
 class GeneralInfo(db.Model):
     __tablename__="generalinfo"
     geninfoID=db.Column(db.Integer,primary_key=True, unique=True)
@@ -47,6 +52,4 @@ class GeneralInfo(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
-
-
 
