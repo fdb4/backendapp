@@ -8,9 +8,8 @@ class Clients(db.Model):
     password=db.Column(db.String(128), nullable=False)
     firstname=db.Column(db.String(45), nullable=False)
     lastname = db.Column(db.String(45), nullable=False)
-    # workoutgoalID=db.Column(db.Integer, ForeignKey(workoutgoalID))
+    workoutgoalID=db.Column(db.Integer, db.ForeignKey("workoutgoalID.workoutgoalID"))
     geninfoID=db.Column(db.Integer,db.ForeignKey("generalinfo.generalinfoID"))
-    # coachexpID=db.Column(db.Integer,foreign_key=True)
     lastModified=db.Column(db.DateTime)
     
 
@@ -53,3 +52,25 @@ class GeneralInfo(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+class WorkoutGoal(db.Model):
+    __tablename__="workoutgoal"
+    workoutgoalID=db.Column(db.Integer,primary_key=True, unique=True)
+    cycling=db.Column(db.Integer)
+    strength=db.Column(db.Integer)
+    running= db.Column(db.Integer)
+    sports=db.Column(db.Integer)
+    yoga=db.Column(db.Integer)
+    swimming=db.Column(db.Integer)
+    martialarts=db.Column(db.Integer)
+    other=db.Column(db.String(45))
+
+    def __repr__(self):
+        return f"<WorkoutGoal (self.firstname) >"
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+    
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
