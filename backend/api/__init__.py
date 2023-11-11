@@ -6,3 +6,4 @@ from . import searchClientController
 from . import getGenInfoController
 from . import getClientGenInfoController
 from . import getClientWorkoutGoalController
+from . import getCoachesController
