@@ -9,8 +9,8 @@ class Clients(db.Model):
     password=db.Column(db.String(128), nullable=False)
     firstname=db.Column(db.String(45), nullable=False)
     lastname = db.Column(db.String(45), nullable=False)
-    workoutgoalID=db.Column(db.Integer(), db.ForeignKey("workoutgoalID.workoutgoalID"))
-    geninfoID=db.Column(db.Integer(),db.ForeignKey("generalinfo.generalinfoID"))
+    workoutgoalID=db.Column(db.Integer(), db.ForeignKey("workoutgoal.workoutgoalID"))
+    geninfoID=db.Column(db.Integer(),db.ForeignKey("geninfo.generalinfoID"))
     coachexpID=db.Column(db.Integer(),db.ForeignKey("coachexp.coachexpID"))
     lastmodified=db.Column(db.DateTime, onupdate=datetime.datetime.now)
     
