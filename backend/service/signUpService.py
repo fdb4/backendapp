@@ -1,5 +1,6 @@
 from data.models import Clients
 from flask import jsonify, session
+from werkzeug.security import generate_password_hash
 
 def signUpClient(email, password, firstname, lastname):
         
@@ -10,9 +11,12 @@ def signUpClient(email, password, firstname, lastname):
 
         new_client=Clients(
             email=email,
-            password=password,
+            password=generate_password_hash(password),
             firstname=firstname,
-            lastname=lastname
+            lastname=lastname,
+            workoutgoalID=None,
+            geninfoID=None,
+            coachexpID=None
         )
         new_client.save()
         session["clientID"]=new_client.clientID
