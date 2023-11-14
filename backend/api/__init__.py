@@ -8,3 +8,4 @@ from . import getClientGenInfoController
 from . import getClientWorkoutGoalController
 from . import getCoachesController
 from . import signUpCoachController
+from . import filterCoachesByStateController
