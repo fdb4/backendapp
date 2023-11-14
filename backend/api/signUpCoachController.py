@@ -16,7 +16,7 @@ coach_signup_model=api.model(
 )
 
 @api.route('/coachSignUp')
-class Logout(Resource):
+class CoachSignUpResource(Resource):
     @api.expect(coach_signup_model)
     def post(self):
         """Getting info from new coaches"""
