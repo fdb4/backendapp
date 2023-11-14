@@ -6,5 +6,5 @@ from service.logoutService import logoutClient
 @api.route('/logout')
 class Logout(Resource):
     def get(self):
-        """Client logout"""
+        """Logout"""
         return logoutClient("clientID")
