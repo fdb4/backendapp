@@ -15,7 +15,7 @@ client_model=api.model(
 )
 
 @api.route('/clients')
-class ClientsRescource(Resource):
+class ClientsResource(Resource):
     @api.marshal_list_with(client_model)
     def get(self):
         """Get all Clients"""
