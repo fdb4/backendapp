@@ -20,7 +20,7 @@ genInfo_model=api.model(
 )
 
 @api.route('/genInfo')
-class ClientsRescource(Resource):
+class GeninfoResource(Resource):
     @api.marshal_list_with(genInfo_model)
     def get(self):
         """Get all General Information"""

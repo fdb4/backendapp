@@ -15,7 +15,7 @@ signup_model=api.model(
 )
 
 @api.route('/signup')
-class SignUp(Resource):
+class SignUpResource(Resource):
     @api.expect(signup_model)
     def post(self):
         """Add a new client"""

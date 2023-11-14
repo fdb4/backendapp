@@ -4,7 +4,7 @@ from flask import request
 from service.logoutService import logoutClient
 
 @api.route('/logout')
-class Logout(Resource):
+class LogoutResource(Resource):
     def get(self):
         """Logout"""
         return logoutClient("clientID")

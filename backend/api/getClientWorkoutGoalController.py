@@ -22,7 +22,7 @@ workoutGoalClient_model=api.model(
 )
 
 @api.route('/workoutGoalInfo/<int:clientID>')
-class ClientsRescource(Resource):
+class ClientsWorkoutResource(Resource):
     @api.marshal_list_with(workoutGoalClient_model)
     def get(self, clientID):
         """Get Workout Goal Information by ClientID"""

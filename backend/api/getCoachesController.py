@@ -21,7 +21,7 @@ coach_model=api.model(
 )
 
 @api.route('/coaches')
-class ClientsRescource(Resource):
+class CoachesRescource(Resource):
     @api.marshal_list_with(coach_model)
     def get(self):
         """Get all coach profiles"""
