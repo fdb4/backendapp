@@ -13,7 +13,7 @@ login_model=api.model(
 )
 
 @api.route('/login')
-class Login(Resource):
+class LoginResource(Resource):
     @api.expect(login_model)
     def post(self):
         email=request.json['email']

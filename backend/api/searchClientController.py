@@ -15,7 +15,7 @@ client_model=api.model(
 )
 
 @api.route('/clients/<int:clientID>')
-class ClientResource(Resource):
+class ClientSearchResource(Resource):
     @api.marshal_with(client_model)
     def get(self, clientID):
         """Get a client by id"""

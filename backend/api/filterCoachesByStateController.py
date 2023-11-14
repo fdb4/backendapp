@@ -1,6 +1,6 @@
 from app import api, app
 from flask_restx import Resource, fields
-from service.getCoachesService import getCoaches
+from service.filterCoachesByStateService import filterByState
 
 coach_model=api.model(
     "Coaches",
@@ -20,10 +20,9 @@ coach_model=api.model(
 
 )
 
-@api.route('/coaches')
-class CoachesRescource(Resource):
+@api.route('/coaches/filter/state/<string:state>')
+class FilterStateResource(Resource):
     @api.marshal_list_with(coach_model)
-    def get(self):
-        """Get all coach profiles"""
-        coaches = getCoaches()
-        return coaches
+    def get(self, state):
+        """Filter coaches by state"""
+        return filterByState(state)
