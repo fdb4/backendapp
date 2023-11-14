@@ -12,7 +12,7 @@ class Clients(db.Model):
     workoutgoalID=db.Column(db.Integer(), db.ForeignKey("workoutgoal.workoutgoalID"))
     geninfoID=db.Column(db.Integer(),db.ForeignKey("generalinfo.geninfoID"))
     coachexpID=db.Column(db.Integer(),db.ForeignKey("coachexp.coachexpID"))
-    lastmodified=db.Column(db.DateTime, onupdate=datetime.datetime.now)
+    lastmodified=db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
     
 
     def __repr__(self):
@@ -26,11 +26,14 @@ class Clients(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-    def update(self,email, password, firstname, lastname):
+    def update(self,email, password, firstname, lastname, workoutGoalID, geninfoID, coachexpID):
         self.email = email
-        self.pword = password
+        self.password = password
         self.firstname = firstname
         self.lastname = lastname
+        self.workoutgoalID = workoutGoalID
+        self.geninfoID = geninfoID
+        self.coachexpID = coachexpID
 
         db.session.commit()
 
@@ -82,10 +85,10 @@ class CoachExp(db.Model):
     coachexpID=db.Column(db.Integer(),primary_key=True, unique=True)
     price=db.Column(db.Double)
     rating=db.Column(db.SmallInteger())
-    locationID= db.Column(db.Integer(), db.ForeignKey("workoutgoalID.workoutgoalID"))
+    locationID= db.Column(db.Integer(), db.ForeignKey("workoutgoal.workoutgoalID"))
     experience=db.Column(db.Date)
     bio=db.Column(db.Text)
-    lastmodified=db.Column(db.DateTime, onupdate=datetime.datetime.now)
+    lastmodified=db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
     
 
     def __repr__(self):
@@ -102,10 +105,10 @@ class CoachExp(db.Model):
 class Location(db.Model):
     __tablename__="location"
     locationID=db.Column(db.Integer(),primary_key=True, unique=True)
-    gym=db.Column(db.Double)
+    gym=db.Column(db.String(45))
     town=db.Column(db.String(45))
     stateID= db.Column(db.Integer(), db.ForeignKey("state.stateID"))
-    lastmodified=db.Column(db.DateTime, onupdate=datetime.datetime.now)
+    lastmodified=db.Column(db.DateTime,  default=datetime.datetime.now, onupdate=datetime.datetime.now)
 
     def __repr__(self):
         return f"<Location (self.firstname) >"
@@ -140,10 +143,10 @@ class ClientCoaches(db.Model):
     clientID=db.Column(db.Integer(), db.ForeignKey("clients.clientID"))
     request=db.Column(db.SmallInteger)
     coachexpID=db.Column(db.Integer(),db.ForeignKey("coachexp.coachexpID"))
-    lastmodified=db.Column(db.DateTime, onupdate=datetime.datetime.now)
+    lastmodified=db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
 
     def __repr__(self):
-        return f"<State (self.firstname) >"
+        return f"<ClientCoaches (self.firstname) >"
 
     def save(self):
         db.session.add(self)
