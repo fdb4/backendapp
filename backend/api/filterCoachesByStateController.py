@@ -20,7 +20,7 @@ coach_model=api.model(
 
 )
 
-@api.route('/coaches/filter/<string:state>')
+@api.route('/coaches/filter/state/<string:state>')
 class FilterStateResource(Resource):
     @api.marshal_list_with(coach_model)
     def get(self, state):
