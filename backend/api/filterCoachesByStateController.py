@@ -5,7 +5,6 @@ from service.filterCoachesByStateService import filterByState
 coach_model=api.model(
     "Coaches",
     {
-        "clientID":fields.Integer(),
         "email":fields.String(45),
         "firstname":fields.String(45),
         "lastname":fields.String(45),

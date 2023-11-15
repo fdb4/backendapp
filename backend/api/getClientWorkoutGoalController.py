@@ -5,7 +5,6 @@ from service.getClientWorkoutGoalService import getClientWorkoutGoal
 workoutGoalClient_model=api.model(
     "workoutGoalClient",
     {
-        "clientID":fields.Integer(),
         "firstname":fields.String(45),
         "lastname":fields.String(45),
         "email":fields.String(45),

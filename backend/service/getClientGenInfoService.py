@@ -2,7 +2,6 @@ from data.models import Clients, GeneralInfo
 from data.exts import db
 def getClientGenInfo(clientID):
     general_info=db.session.query(
-        Clients.clientID,
         Clients.firstname, 
         Clients.lastname, 
         Clients.email,

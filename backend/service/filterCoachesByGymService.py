@@ -4,7 +4,7 @@ from sqlalchemy.sql import text
 
 def filterByGym(gym):
     query = text(
-    "select info2.clientID, info2.email, info2.firstname, info2.lastname, info2.price, info2.rating, info2.experience, info2.bio, info2.gym, info2.town, s.state "
+    "select info2.email, info2.firstname, info2.lastname, info2.price, info2.rating, info2.experience, info2.bio, info2.gym, info2.town, s.state "
     "from schema.state s "
     "join "
     "(select info.clientID, info.email, info.firstname, info.lastname, info.price, info.rating, info.experience, info.bio, l.gym, l.town, l.stateID "
