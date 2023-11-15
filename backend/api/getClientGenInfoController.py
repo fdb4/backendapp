@@ -5,7 +5,6 @@ from service.getClientGenInfoService import getClientGenInfo
 genInfo_model=api.model(
     "genInfo",
     {
-        "clientID":fields.Integer(),
         "firstname":fields.String(45),
         "lastname":fields.String(45),
         "email":fields.String(45),
@@ -20,7 +19,7 @@ genInfo_model=api.model(
 )
 
 @api.route('/genInfo/<int:clientID>')
-class ClientInfoRescource(Resource):
+class ClientInfoResource(Resource):
     @api.marshal_list_with(genInfo_model)
     def get(self, clientID):
         """Get General Information by ClientID"""
