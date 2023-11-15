@@ -5,7 +5,6 @@ from service.getClientGenInfoService import getClientGenInfo
 genInfo_model=api.model(
     "genInfo",
     {
-        "clientID":fields.Integer(),
         "firstname":fields.String(45),
         "lastname":fields.String(45),
         "email":fields.String(45),

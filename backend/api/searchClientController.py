@@ -1,13 +1,11 @@
-from app import api
+from app import api, app
 from flask_restx import Resource, fields
 from service.searchClientService import searchClient
 
 client_model=api.model(
     "Clients",
     {
-        "clientID":fields.Integer(),
         "email":fields.String(45),
-        "password":fields.String(45),
         "firstname":fields.String(45),
         "lastname":fields.String(45)
     }

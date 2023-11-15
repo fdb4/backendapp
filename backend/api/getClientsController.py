@@ -5,9 +5,7 @@ from service.getClientsService import getClients
 client_model=api.model(
     "Clients",
     {
-        "clientID":fields.Integer(),
         "email":fields.String(45),
-        "password":fields.String(45),
         "firstname":fields.String(45),
         "lastname":fields.String(45)
     }
