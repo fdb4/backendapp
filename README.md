@@ -1,26 +1,31 @@
 # Backendapp
 
-Backend Technology
+Deployed backend: https://github.com/fdb4/WebsiteApplication
 
-The backend technology uses the Python Flask framework 
+_____________________________________________________________________________________________________________________________________________________
 
-The Flask_restx Api import allows for the creation of REST endpoints and the documentation of these endpoints in the Swagger tool.
+Backend Technology:
 
-REST endpoints in the backend contain models for the JSON structure that is expected from the React frontend or returned from the service layer
+- The backend technology uses the Python Flask framework 
 
-The backend also uses CORS (Cross-origin Resource Sharing) to allow the framework to interact with the React frontend.
+- The Flask_restx Api import allows for the creation of REST endpoints and the documentation of these endpoints in the Swagger tool.
 
-SQL commands on the database are executed using SQLAlchemy
+- REST endpoints in the backend contain models for the JSON structure that is expected from the React frontend or returned from the service layer
 
+- The backend also uses CORS (Cross-origin Resource Sharing) to allow the framework to interact with the React frontend.
 
+- SQL commands on the database are executed using SQLAlchemy
 
-Data Management
+_____________________________________________________________________________________________________________________________________________________
 
-Data is stored in a MySQL relational database hosted on the Azure platform
+Data Management:
 
-By using a digital certificate, the flask application is connected with our stored data and is updated depending on front-end requests.
+- Data is stored in a MySQL relational database hosted on the Azure platform
 
-Data within the database is accessed using SQLAlchemy in the service layer of our Flask framework.
+- By using a digital certificate, the flask application is connected with our stored data and is updated depending on front-end requests.
 
-Data management and schema maintenance are done through MySQL Workbench and DBeaver.
+- Data within the database is accessed using SQLAlchemy in the service layer of our Flask framework.
+
+- Data management and schema maintenance are done through MySQL Workbench and DBeaver.
+
 
