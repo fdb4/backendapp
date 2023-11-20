@@ -17,3 +17,6 @@ from . import filterCoachesByCostController
 from . import filterCoachesByExpController
 from . import filterCoachesByIdController
 from . import filterCoachesByRatingController
+
+from . import searchCoachController
+from . import filterCoachesByStateGymController
