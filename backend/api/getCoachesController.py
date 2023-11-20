@@ -1,11 +1,12 @@
 from app import api, app
 from flask_restx import Resource, fields
 from service.getCoachesService import getCoaches
+from flask_jwt_extended import jwt_required
+
 
 coach_model=api.model(
     "Coaches",
     {
-        "clientID":fields.Integer(),
         "email":fields.String(45),
         "firstname":fields.String(45),
         "lastname":fields.String(45),
@@ -21,8 +22,9 @@ coach_model=api.model(
 )
 
 @api.route('/coaches')
-class CoachesResource(Resource):
+class CoachesRescource(Resource):
     @api.marshal_list_with(coach_model)
+    @jwt_required()
     def get(self):
         """Get all coach profiles"""
         coaches = getCoaches()

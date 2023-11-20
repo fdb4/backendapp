@@ -1,11 +1,12 @@
 from app import api, app
 from flask_restx import Resource, fields
 from service.filterCoachesByTownService import filterByTown
+from flask_jwt_extended import jwt_required
+
 
 coach_model=api.model(
     "Coaches",
     {
-        "clientID":fields.Integer(),
         "email":fields.String(45),
         "firstname":fields.String(45),
         "lastname":fields.String(45),
@@ -23,6 +24,7 @@ coach_model=api.model(
 @api.route('/coaches/filter/town/<string:town>')
 class FilterTownResource(Resource):
     @api.marshal_list_with(coach_model)
+    @jwt_required()
     def get(self, town):
         """Filter coaches by town"""
         return filterByTown(town)

@@ -1,11 +1,11 @@
 from app import api, app
 from flask_restx import Resource, fields
 from service.getClientWorkoutGoalService import getClientWorkoutGoal
+from flask_jwt_extended import jwt_required
 
 workoutGoalClient_model=api.model(
     "workoutGoalClient",
     {
-        "clientID":fields.Integer(),
         "firstname":fields.String(45),
         "lastname":fields.String(45),
         "email":fields.String(45),
@@ -22,8 +22,9 @@ workoutGoalClient_model=api.model(
 )
 
 @api.route('/workoutGoalInfo/<int:clientID>')
-class ClientsWorkoutResource(Resource):
+class ClientsWorkoutRescource(Resource):
     @api.marshal_list_with(workoutGoalClient_model)
+    @jwt_required()
     def get(self, clientID):
         """Get Workout Goal Information by ClientID"""
         info = getClientWorkoutGoal(clientID)
