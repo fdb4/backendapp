@@ -20,7 +20,7 @@ coach_model=api.model(
 )
 
 @api.route('/coaches/<int:coachexpID>')
-class ClientResource(Resource):
+class CoachSearchResource(Resource):
     @api.marshal_with(coach_model)
     def get(self, coachexpID):
         """Get a coach by id"""
