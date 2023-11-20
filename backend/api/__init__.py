@@ -13,3 +13,4 @@ from . import filterCoachesByTownController
 from . import filterCoachesByStateTownController
 from . import filterCoachesByGymController
 from . import searchCoachController
+from . import filterCoachesByStateGymController
