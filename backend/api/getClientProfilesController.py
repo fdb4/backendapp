@@ -1,7 +1,6 @@
 from app import api, app
 from flask_restx import Resource, fields
-from service.getGenInfoService import getGenInfo
-from flask_jwt_extended import jwt_required
+from service.getClientProfilesService import getClientProfiles
 
 genInfo_model=api.model(
     "genInfo",
@@ -30,8 +29,7 @@ genInfo_model=api.model(
 @api.route('/clients/profiles')
 class ClientsRescource(Resource):
     @api.marshal_list_with(genInfo_model)
-    @jwt_required()
     def get(self):
         """Get Client profiles"""
-        info = getGenInfo()
+        info = getClientProfiles()
         return info
