@@ -1,5 +1,3 @@
-# filterCoachesByGoalsService.py
-
 from data.models import Clients, CoachExp, Location, State, WorkoutGoal
 from data.exts import db
 from sqlalchemy.sql import text

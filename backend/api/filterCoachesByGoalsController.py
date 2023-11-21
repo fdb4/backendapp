@@ -1,5 +1,5 @@
 from flask_restx import Resource, Namespace, fields
-from .filterCoachesByGoalsService import filter_coaches_by_goal
+from service.filterCoachesByGoalsService import filter_coaches_by_goal
 
 api = Namespace('coaches', description='Coaches related operations')
 
