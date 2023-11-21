@@ -10,7 +10,6 @@ from . import getCoachesController
 from . import signUpCoachController
 from . import filterCoachesByStateController
 from . import filterCoachesByTownController
-from . import filterCoachesByStateTownController
 from . import filterCoachesByGymController
 from . import filterCoachesByGoalsController
 from . import filterCoachesByCostController
@@ -19,4 +18,3 @@ from . import filterCoachesByIdController
 from . import filterCoachesByRatingController
 
 from . import searchCoachController
-from . import filterCoachesByStateGymController
