@@ -12,5 +12,7 @@ from . import filterCoachesByStateController
 from . import filterCoachesByTownController
 from . import filterCoachesByGymController
 from . import searchCoachController
+from . import doneSurveyController
+from . import doneCoachSurveyController
 from . import clientSurveyController
 from . import dailyLogController
