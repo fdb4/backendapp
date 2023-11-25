@@ -3,6 +3,7 @@ from data.exts import db
 from sqlalchemy.sql import text
 
 def filterByGym(gym):
+    similar = f'%{gym}%'
     query = text(
     "select info2.clientID, info2.email, info2.firstname, info2.lastname, info2.price, info2.rating, info2.experience, info2.bio, info2.gym, info2.town, s.state "
     "from schema.state s "
@@ -14,9 +15,9 @@ def filterByGym(gym):
     "from schema.clients c "
     "join schema.coachexp x "
     "where c.coachexpid = x.coachexpid) info "
-    "where info.locationID = l.locationID and l.gym = :gy) info2 "
+    "where info.locationID = l.locationID and l.gym like :gy) info2 "
     "where info2.stateID = s.StateID;")
-    query = query.bindparams(gy=gym)
+    query = query.bindparams(gy=similar)
 
     results = db.session.execute(query).fetchall()
     return results
