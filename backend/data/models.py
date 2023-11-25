@@ -155,3 +155,24 @@ class ClientCoaches(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
+class DailyLog(db.Model):
+    __tablename__="dailylog"
+    logID=db.Column(db.Integer(),primary_key=True, unique=True)
+    clientID=db.Column(db.Integer(), db.ForeignKey("clients.clientID"))
+    calorie=db.Column(db.Integer())
+    water=db.Column(db.Integer())
+    mood=db.Column(db.Integer())
+    date=db.Column(db.DateTime, default=datetime.date.today(), onupdate=datetime.date.today())
+    lastmodified=db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
+
+    def __repr__(self):
+        return f"<ClientCoaches (self.firstname) >"
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+    
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
