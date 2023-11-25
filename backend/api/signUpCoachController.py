@@ -29,5 +29,4 @@ class CoachSignUpResource(Resource):
         state=request.json['state']
 
         resp =  signUpCoach(clientID, price, experience, bio, gym, town, state)
-        print(5)
         return resp
