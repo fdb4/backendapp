@@ -19,3 +19,4 @@ from . import filterCoachesByRatingController
 
 from . import searchCoachController
 from . import doneSurveyController
+from . import doneCoachSurveyController
