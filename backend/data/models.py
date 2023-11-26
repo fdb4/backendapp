@@ -12,6 +12,7 @@ class Clients(db.Model):
     workoutgoalID=db.Column(db.Integer(), db.ForeignKey("workoutgoal.workoutgoalID"))
     geninfoID=db.Column(db.Integer(),db.ForeignKey("generalinfo.geninfoID"))
     coachexpID=db.Column(db.Integer(),db.ForeignKey("coachexp.coachexpID"))
+    adminID=db.Column(db.Integer())
     lastmodified=db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
     
 
