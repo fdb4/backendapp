@@ -6,7 +6,10 @@ from service.filterCoachesByIdService import filter_coaches_by_id
 coach_model = api.model(
     "Coach",
     {
-        "coachexpID": fields.Integer(),
+        "clientID": fields.Integer(),
+        "email": fields.String(45),
+        "firstname": fields.String(45),
+        "lastname": fields.String(45),
         "price": fields.Float(),
         "rating": fields.Integer(),
         "experience": fields.String(),

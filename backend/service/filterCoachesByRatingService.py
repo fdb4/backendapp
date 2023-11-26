@@ -8,9 +8,10 @@ def filter_coaches_by_rating(sort_order='desc'):
 
     query = text(
     """
-    SELECT ce.coachexpID, ce.price, ce.rating, ce.experience, ce.bio, 
-           l.gym, l.town, s.state 
+    SELECT c.clientID, c.email, c.firstname, c.lastname, ce.price, ce.rating, 
+           ce.experience, ce.bio, l.gym, l.town, s.state 
     FROM coachexp ce 
+    JOIN clients c ON ce.coachexpID = c.coachexpID 
     JOIN location l ON ce.locationID = l.locationID 
     JOIN state s ON l.stateID = s.stateID 
     ORDER BY ce.rating {}
