@@ -21,4 +21,4 @@ def filter_coaches_by_goal(goal_type):
 
 
    results = db.session.execute(query).fetchall()
-   return [dict(row) for row in results]
+   return (results)
