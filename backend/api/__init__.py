@@ -23,3 +23,4 @@ from . import doneCoachSurveyController
 from . import clientSurveyController
 from . import clientSurveyController
 from . import dailyLogController
+from . import viewRequestsController
