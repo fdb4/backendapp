@@ -29,22 +29,26 @@ class Survey(Resource):
     @api.expect(survey_model)
     def post(self):
         """Getting info from client surveys"""
-        clientID=session["clientID"]
-        height=request.json['height']
-        weight=request.json['weight']
-        goalweight=request.json['goalweight']
-        movement=request.json['movement']
-        age=request.json['age']
-        gender=request.json['gender']
-        cycling=request.json['cycling']
-        strength=request.json['strength']
-        running=request.json['running']
-        sports=request.json['sports']
-        yoga=request.json['yoga']
-        swimming=request.json['swimming']
-        martialarts=request.json['martialarts']
-        other=request.json['other']
+        clientID = request.json.get("clientID")  # Use get() to handle missing key gracefully
+        height = request.json.get('height')
+        weight = request.json.get('weight')
+        goalweight = request.json.get('goalweight')
+        movement = request.json.get('movement')
+        age = request.json.get('age')
+        gender = request.json.get('gender')
+        cycling = request.json.get('cycling')
+        strength = request.json.get('strength')
+        running = request.json.get('running')
+        sports = request.json.get('sports')
+        yoga = request.json.get('yoga')
+        swimming = request.json.get('swimming')
+        martialarts = request.json.get('martialarts')
+        other = request.json.get('other')
 
-        resp =  survey(clientID, height, weight, goalweight, movement, age, gender, cycling, strength, running, sports, yoga, swimming, martialarts, other)
+        # Use the retrieved values in your survey function or further processing
+        resp = survey(
+            clientID, height, weight, goalweight, movement, age, gender,
+            cycling, strength, running, sports, yoga, swimming, martialarts, other
+        )
 
         return resp
