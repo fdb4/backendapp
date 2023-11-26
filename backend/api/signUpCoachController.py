@@ -21,13 +21,13 @@ class CoachSignUpResource(Resource):
     @api.expect(coach_signup_model)
     def post(self):
         """Getting info from new coaches"""
-        clientID=request.json['clientID']
-        price=request.json['price']
-        experience=request.json['experience']
-        bio=request.json['bio']
-        gym=request.json['gym']
-        town=request.json['town']
-        state=request.json['state']
+        coachID = request.json['id']
+        price = request.json['price']
+        experience = request.json['experience']
+        bio = request.json['bio']
+        gym = request.json['gym']
+        town = request.json['town']
+        state = request.json['state']
 
-        resp =  signUpCoach(clientID, price, experience, bio, gym, town, state)
+        resp = signUpCoach(coachID, price, experience, bio, gym, town, state)
         return resp
