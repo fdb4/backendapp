@@ -25,5 +25,5 @@ class SignUpResource(Resource):
         firstname=request.json['firstname']
         lastname=request.json['lastname']
         userType=request.json['userType']
-        return signUpClient(email, password, firstname, lastname)
+        return signUpClient(email, password, firstname, lastname, userType)
         

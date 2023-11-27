@@ -2,7 +2,7 @@ from data.models import Clients
 from flask import jsonify, session
 from werkzeug.security import generate_password_hash
 
-def signUpClient(email, password, firstname, lastname):
+def signUpClient(email, password, firstname, lastname, userType):
         
         client=Clients.query.filter_by(email=email).first()
 
@@ -16,6 +16,7 @@ def signUpClient(email, password, firstname, lastname):
             lastname=lastname,
             workoutgoalID=None,
             geninfoID=None,
+            isCoach=userType,
             coachexpID=None
         )
         new_client.save()
