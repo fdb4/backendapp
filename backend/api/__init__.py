@@ -11,6 +11,11 @@ from . import signUpCoachController
 from . import filterCoachesByStateController
 from . import filterCoachesByTownController
 from . import filterCoachesByGymController
+from . import filterCoachesByGoalsController
+from . import filterCoachesByCostController
+from . import filterCoachesByExpController
+from . import filterCoachesByIdController
+from . import filterCoachesByRatingController
 from . import searchCoachController
 from . import doneSurveyController
 from . import doneCoachSurveyController
