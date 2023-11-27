@@ -86,7 +86,7 @@ class CoachExp(db.Model):
     price=db.Column(db.Double)
     rating=db.Column(db.SmallInteger())
     locationID= db.Column(db.Integer(), db.ForeignKey("workoutgoal.workoutgoalID"))
-    experience=db.Column(db.Date)
+    experience=db.Column(db.Integer())
     bio=db.Column(db.Text)
     lastmodified=db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
     
@@ -175,3 +175,4 @@ class MessageTable(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
