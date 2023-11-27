@@ -23,3 +23,4 @@ from . import clientSurveyController
 from . import dailyLogController
 from . import viewRequestsController
 from . import viewCoachClientsController
+from . import handleRequestController
