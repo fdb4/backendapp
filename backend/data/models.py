@@ -1,7 +1,7 @@
 from .exts import db
 from uuid import uuid1
 import datetime
-
+from sqlalchemy.dialects.mysql import TEXT, TINYINT,BOOLEAN
 class Clients(db.Model):
     __tablename__="clients"
     clientID=db.Column(db.Integer(),primary_key=True, autoincrement=True)
@@ -152,6 +152,26 @@ class ClientCoaches(db.Model):
         db.session.add(self)
         db.session.commit()
     
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+class MessageTable(db.Model):
+    __tablename__="messagetable"
+    messageID=db.Column(db.Integer(),primary_key=True, unique=True)
+    clientID=db.Column(db.Integer(), db.ForeignKey("clients.clientID"))
+    coachexpID=db.Column(db.Integer(), db.ForeignKey("clients.coachexpID"))
+    message=db.Column(db.TEXT())
+    Read=db.Column(db.BOOLEAN,default=False)
+    lastmodified=db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
+
+    def __repr__(self):
+        return f"<MessageTable (self.messageID) >"
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
     def delete(self):
         db.session.delete(self)
         db.session.commit()
