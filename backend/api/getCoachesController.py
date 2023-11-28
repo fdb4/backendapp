@@ -5,12 +5,13 @@ from service.getCoachesService import getCoaches
 coach_model=api.model(
     "Coaches",
     {
+        "clientID":fields.Integer(),
         "email":fields.String(45),
         "firstname":fields.String(45),
         "lastname":fields.String(45),
         "price":fields.Float(),
         "rating":fields.Integer(),
-        "experience":fields.Integer(),
+        "experience":fields.Date(),
         "bio":fields.String(4294967295),
         "gym":fields.String(45),
         "town":fields.String(45),
@@ -20,7 +21,7 @@ coach_model=api.model(
 )
 
 @api.route('/coaches')
-class CoachesRescource(Resource):
+class CoachesResource(Resource):
     @api.marshal_list_with(coach_model)
     def get(self):
         """Get all coach profiles"""

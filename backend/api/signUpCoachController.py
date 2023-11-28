@@ -7,7 +7,7 @@ coach_signup_model=api.model(
     'Coach_SignUp',
     {
         "price":fields.Float(),
-        "experience":fields.Integer(),
+        "experience":fields.Date(),
         "bio":fields.String(4294967295),
         "gym":fields.String(45),
         "town":fields.String(45),

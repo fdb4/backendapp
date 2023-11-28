@@ -2,6 +2,7 @@ from data.models import Clients, WorkoutGoal
 from data.exts import db
 def getClientWorkoutGoal(clientID):
     general_info=db.session.query(
+        Clients.clientID,
         Clients.firstname, 
         Clients.lastname, 
         Clients.email,
