@@ -1,7 +1,7 @@
 from data.exts import db
 from sqlalchemy.sql import text
 
-def viewRequests(clientID):
+def viewCoachClients(clientID):
         query = text(
                 "select c.coachexpID "
                 "from clients c "
@@ -19,7 +19,7 @@ def viewRequests(clientID):
                 "join( "
                 "select * "
                 "from clientcoaches c "
-                "where coachexpID = :cid and request IS NULL) info "
+                "where coachexpID = :cid and request = 1) info "
                 "where info.clientID = c.clientID "
         )
 
