@@ -26,3 +26,4 @@ from . import viewCoachClientsController
 from . import handleRequestController
 from . import editClientProfileController
 from . import requestCoachController
+from . import dailyLogGraphController
