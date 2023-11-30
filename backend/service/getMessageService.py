@@ -2,8 +2,9 @@ from data.models import Clients, MessageTable
 from data.exts import db
 from sqlalchemy.orm import aliased
 from sqlalchemy.sql import text
+from sqlalchemy import update;
 from flask import jsonify, session
-def getMessage():
+def getMessage(clientID):
     """coach=aliased(Clients)
     Message=db.session.query(
 
@@ -13,13 +14,13 @@ def getMessage():
         MessageTable.Read
 
     ).join(Clients, MessageTable.clientID == Clients.clientID).join(coach, MessageTable.coachexpID == coach.coachexpID).all()
-    Message=Message.filter_by(MessageTable.clientID==session["clientID"])"""
+    Message=Message.filter_by(MessageTable.clientID==session["clientID"])"""#have this cause why not
     query = text(
-
-        "select  messagetable.message, coach.firstname, coach.lastname "
-        "from messagetable "
-        "inner join clients as coach on messagetable.coachexpID=coach.coachexpID"
-        " where messagetable.clientID=:CID;")
-    query = query.bindparams(CID=session["clientID"])
+        "SELECT  messagetable.message, sender.firstname as SenderFN,sender.lastname as SenderLN ,Reciever.firstname,Reciever.lastname,messagetable.lastmodified "
+        "FROM messagetable "
+        " inner join clients as Sender on messagetable.MSender=sender.clientID"
+        " inner join clients as Reciever on messagetable.MReciever=Reciever.clientID"
+        " where messagetable.clientID=:SID and messagetable.clientID2=:RID;")
+    query = query.bindparams(SID=session["clientID"],RID=clientID)
     Message= db.session.execute(query).fetchall()
     return Message

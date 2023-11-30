@@ -17,3 +17,4 @@ from . import filterCoachesByCostController
 from . import filterCoachesByExpController
 from . import filterCoachesByIdController
 from . import filterCoachesByRatingController
+from . import MessageController
