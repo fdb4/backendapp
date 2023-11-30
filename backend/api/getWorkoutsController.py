@@ -8,10 +8,9 @@ workout_bank_model=api.model(
         "workoutID":fields.Integer(),
         "workoutname":fields.String(45),
         "videolink":fields.String(65535),
-        "difficulty":fields.Integer(),
-        "musclegroup1":fields.String(45),
-        "musclegroup2":fields.String(45),
-        "musclegroup3":fields.String(45)
+        "description":fields.String(65535),
+        "musclegroup":fields.String(45),
+        "equipment":fields.String(45)
 
     }
 
