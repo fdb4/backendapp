@@ -30,3 +30,4 @@ from . import dailyLogGraphController
 from . import getWorkoutsController
 from . import filterWorkoutsByNameController
 from . import filterWorkoutsByEquipmentController
+from . import filterWorkoutsByMuscleGroupController
