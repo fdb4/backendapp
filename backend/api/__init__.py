@@ -29,3 +29,4 @@ from . import requestCoachController
 from . import dailyLogGraphController
 from . import getWorkoutsController
 from . import filterWorkoutsByNameController
+from . import filterWorkoutsByEquipmentController
