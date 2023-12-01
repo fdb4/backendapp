@@ -28,3 +28,4 @@ from . import editClientProfileController
 from . import requestCoachController
 from . import dailyLogGraphController
 from . import getWorkoutsController
+from . import filterWorkoutsByNameController
