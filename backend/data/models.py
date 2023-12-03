@@ -11,7 +11,9 @@ class Clients(db.Model):
     lastname = db.Column(db.String(45), nullable=False)
     workoutgoalID=db.Column(db.Integer(), db.ForeignKey("workoutgoal.workoutgoalID"))
     geninfoID=db.Column(db.Integer(),db.ForeignKey("generalinfo.geninfoID"))
+    isCoach=db.Column(db.Integer())
     coachexpID=db.Column(db.Integer(),db.ForeignKey("coachexp.coachexpID"))
+    adminID=db.Column(db.Integer())
     lastmodified=db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
     
 
@@ -86,7 +88,7 @@ class CoachExp(db.Model):
     price=db.Column(db.Double)
     rating=db.Column(db.SmallInteger())
     locationID= db.Column(db.Integer(), db.ForeignKey("workoutgoal.workoutgoalID"))
-    experience=db.Column(db.Date)
+    experience=db.Column(db.Integer)
     bio=db.Column(db.Text)
     lastmodified=db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
     
@@ -157,6 +159,7 @@ class ClientCoaches(db.Model):
         db.session.commit()
 
 
+
 class MessageTable(db.Model):
     __tablename__="messagetable"
     messageID=db.Column(db.Integer(),primary_key=True, unique=True)
@@ -170,6 +173,26 @@ class MessageTable(db.Model):
 
     def __repr__(self):
         return f"<MessageTable (self.messageID) >"
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+class DailyLog(db.Model):
+    __tablename__="dailylog"
+    logID=db.Column(db.Integer(),primary_key=True, unique=True)
+    clientID=db.Column(db.Integer(), db.ForeignKey("clients.clientID"))
+    calorie=db.Column(db.Integer())
+    water=db.Column(db.Integer())
+    mood=db.Column(db.Integer())
+    date=db.Column(db.DateTime, default=datetime.date.today(), onupdate=datetime.date.today())
+    lastmodified=db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
+
+    def __repr__(self):
+        return f"<ClientCoaches (self.firstname) >"
 
     def save(self):
         db.session.add(self)

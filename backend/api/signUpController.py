@@ -7,10 +7,11 @@ from service.signUpService import signUpClient
 signup_model=api.model(
     'Signup',
     {
+        "email":fields.String(),
         "firstname":fields.String(),
         "lastname":fields.String(),
-        "email":fields.String(),
-        "password":fields.String()
+        "password":fields.String(),
+        "userType":fields.Integer()
     }
 )
 
@@ -23,5 +24,6 @@ class SignUpResource(Resource):
         password=request.json['password']
         firstname=request.json['firstname']
         lastname=request.json['lastname']
-        return signUpClient(email, password, firstname, lastname)
+        userType=request.json['userType']
+        return signUpClient(email, password, firstname, lastname, userType)
         
