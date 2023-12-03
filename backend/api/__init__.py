@@ -16,6 +16,7 @@ from . import filterCoachesByCostController
 from . import filterCoachesByExpController
 from . import filterCoachesByIdController
 from . import filterCoachesByRatingController
+from . import MessageController
 from . import searchCoachController
 from . import doneSurveyController
 from . import doneCoachSurveyController
@@ -31,3 +32,4 @@ from . import getWorkoutsController
 from . import filterWorkoutsByNameController
 from . import filterWorkoutsByEquipmentController
 from . import filterWorkoutsByMuscleGroupController
+

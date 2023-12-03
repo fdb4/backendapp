@@ -18,7 +18,7 @@ genInfo_model=api.model(
 
 )
 
-@api.route('/genInfo/<int:clientID>')
+@api.route('/genInfo/<clientID>')
 class ClientInfoResource(Resource):
     @api.marshal_list_with(genInfo_model)
     def get(self, clientID):
