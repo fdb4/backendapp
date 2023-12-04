@@ -37,3 +37,4 @@ from . import deleteProfileController
 from . import filterCoachesBySpecializationController
 from . import editWorkoutController
 from . import createWorkoutController
+from . import getUnreadMessagesController
