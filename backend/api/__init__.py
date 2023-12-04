@@ -35,3 +35,4 @@ from . import filterWorkoutsByMuscleGroupController
 from . import getConversationsController
 from . import deleteProfileController
 from . import filterCoachesBySpecializationController
+from . import editWorkoutController
