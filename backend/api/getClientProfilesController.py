@@ -26,10 +26,10 @@ genInfo_model=api.model(
 
 )
 
-@api.route('/clients/profiles')
+@api.route('/clients/profile/<int:clientID>')
 class ClientsRescource(Resource):
     @api.marshal_list_with(genInfo_model)
-    def get(self):
-        """Get Client profiles"""
-        info = getClientProfiles()
+    def get(self, clientID):
+        """Get a client's profile"""
+        info = getClientProfiles(clientID)
         return info
