@@ -2,7 +2,6 @@ from data.models import Clients, CoachExp, Location, State
 from data.exts import db
 from sqlalchemy.sql import text
 
-
 def filterBySpecialization(specialization):
     # Ensure specialization is a valid column name to avoid SQL injection
     valid_specializations = ['cycling', 'strength', 'running', 'sports', 'yoga', 'swimming', 'martialarts', 'other']
@@ -21,7 +20,8 @@ def filterBySpecialization(specialization):
         ce.bio, 
         l.gym, 
         l.town, 
-        s.state
+        s.state,
+        '{specialization}' AS specialization
     FROM 
         clients c
     JOIN 
