@@ -2,6 +2,7 @@ from .exts import db
 from uuid import uuid1
 import datetime
 from sqlalchemy.dialects.mysql import TEXT, TINYINT,BOOLEAN
+
 class Clients(db.Model):
     __tablename__="clients"
     clientID=db.Column(db.Integer(),primary_key=True, autoincrement=True)
@@ -15,7 +16,6 @@ class Clients(db.Model):
     coachexpID=db.Column(db.Integer(),db.ForeignKey("coachexp.coachexpID"))
     adminID=db.Column(db.Integer())
     lastmodified=db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
-    
 
     def __repr__(self):
         return f"<Clients (self.firstname) >"
@@ -90,6 +90,7 @@ class CoachExp(db.Model):
     locationID= db.Column(db.Integer(), db.ForeignKey("workoutgoal.workoutgoalID"))
     experience=db.Column(db.Integer)
     bio=db.Column(db.Text)
+    visible=db.Column(db.Integer)
     lastmodified=db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
     
 
@@ -158,8 +159,6 @@ class ClientCoaches(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-
-
 class MessageTable(db.Model):
     __tablename__="messagetable"
     messageID=db.Column(db.Integer(),primary_key=True, unique=True)
@@ -181,6 +180,7 @@ class MessageTable(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
 class DailyLog(db.Model):
     __tablename__="dailylog"
     logID=db.Column(db.Integer(),primary_key=True, unique=True)
