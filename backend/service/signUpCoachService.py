@@ -18,6 +18,7 @@ def signUpCoach(clientID, price, experience, bio, gym, town, state):
         rating=0.0,
         locationID=locationID,
         experience=experience,
+        visible=1,
         bio=bio
     )
 
