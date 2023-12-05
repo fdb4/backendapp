@@ -5,6 +5,7 @@ from service.adminCoachRequestService import adminCoachRequest
 coach_model=api.model(
     "Coaches",
     {
+        "coachexpID":fields.Integer(),
         "email":fields.String(45),
         "firstname":fields.String(45),
         "lastname":fields.String(45),
