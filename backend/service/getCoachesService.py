@@ -5,6 +5,7 @@ def getCoaches():
     query = text(
         """
         SELECT 
+            info2.clientID,
             info2.email, 
             info2.firstname, 
             info2.lastname, 
@@ -20,7 +21,7 @@ def getCoaches():
             schema.state s 
         JOIN 
             (SELECT 
-                info.clientID, 
+                info.clientID,
                 info.email, 
                 info.firstname, 
                 info.lastname, 
@@ -60,17 +61,18 @@ def getCoaches():
     coaches = []
     for result in results:
         coach = {
-            "email": result[0],
-            "firstname": result[1],
-            "lastname": result[2],
-            "price": result[3],
-            "rating": result[4],
-            "experience": result[5],
-            "bio": result[6],
-            "gym": result[7],
-            "town": result[8],
-            "state": result[9],
-            "specializations": extract_specializations(result[10:])
+            "clientID": result[0],
+            "email": result[1],
+            "firstname": result[2],
+            "lastname": result[3],
+            "price": result[4],
+            "rating": result[5],
+            "experience": result[6],
+            "bio": result[7],
+            "gym": result[8],
+            "town": result[9],
+            "state": result[10],
+            "specializations": extract_specializations(result[11:])
         }
         coaches.append(coach)
 
