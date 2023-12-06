@@ -10,4 +10,5 @@ def loginClient(email,password):
         if not check_password_hash(client.password,password):
             return {"message":"Wrong password"},401
         session["clientID"]=client.clientID
-        return jsonify({"message":"Success", "coachexpID":client.coachexpID})
+        session["isadmin"]=client.isadmin
+        return jsonify({"message":"Success", "coachexpID":client.coachexpID,"adminID":session["isadmin"]})

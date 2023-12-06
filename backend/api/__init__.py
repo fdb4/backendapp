@@ -18,3 +18,4 @@ from . import filterCoachesByExpController
 from . import filterCoachesByIdController
 from . import filterCoachesByRatingController
 from . import MessageController
+from . import admincoachController
