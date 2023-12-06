@@ -11,4 +11,4 @@ def loginClient(email,password):
             return {"message":"Wrong password"},401
         session["clientID"]=client.clientID
         session["isadmin"]=client.isadmin
-        return jsonify({"message":"Success", "coachexpID":client.coachexpID,"adminID":session["isadmin"]})
+        return jsonify({"message":"Success", "clientID":session["clientID"],"coachexpID":client.coachexpID,"adminID":session["isadmin"]})
