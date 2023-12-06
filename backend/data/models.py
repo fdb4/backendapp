@@ -14,7 +14,7 @@ class Clients(db.Model):
     geninfoID=db.Column(db.Integer(),db.ForeignKey("generalinfo.geninfoID"))
     isCoach=db.Column(db.Integer())
     coachexpID=db.Column(db.Integer(),db.ForeignKey("coachexp.coachexpID"))
-    adminID=db.Column(db.Integer())
+    isadmin=db.Column(db.Integer())
     lastmodified=db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
 
     def __repr__(self):

@@ -17,7 +17,8 @@ def signUpClient(email, password, firstname, lastname, userType):
             workoutgoalID=None,
             geninfoID=None,
             isCoach=userType,
-            coachexpID=None
+            coachexpID=None,
+            isadmin=None
         )
         new_client.save()
         session["clientID"]=new_client.clientID
