@@ -11,11 +11,12 @@ coach_model=api.model(
         "lastname":fields.String(45),
         "price":fields.Float(),
         "rating":fields.Integer(),
-        "experience":fields.Date(),
+        "experience":fields.Integer(),
         "bio":fields.String(4294967295),
         "gym":fields.String(45),
         "town":fields.String(45),
-        "state":fields.String(45)
+        "state":fields.String(45),
+        "specializations": fields.List(fields.String)
     }
 
 )

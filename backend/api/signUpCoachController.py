@@ -6,6 +6,7 @@ from service.signUpCoachService import signUpCoach
 coach_signup_model=api.model(
     'Coach_SignUp',
     {
+        "clientID":fields.Integer(),
         "price":fields.Float(),
         "experience":fields.Date(),
         "bio":fields.String(4294967295),
@@ -20,14 +21,13 @@ class CoachSignUpResource(Resource):
     @api.expect(coach_signup_model)
     def post(self):
         """Getting info from new coaches"""
-        clientID=session["clientID"]
-        price=request.json['price']
-        experience=request.json['experience']
-        bio=request.json['bio']
-        gym=request.json['gym']
-        town=request.json['town']
-        state=request.json['state']
+        coachID = request.json['clientID']
+        price = request.json['price']
+        experience = request.json['experience']
+        bio = request.json['bio']
+        gym = request.json['gym']
+        town = request.json['town']
+        state = request.json['state']
 
-        resp =  signUpCoach(clientID, price, experience, bio, gym, town, state)
-        print(5)
+        resp = signUpCoach(coachID, price, experience, bio, gym, town, state)
         return resp
