@@ -1,9 +1,9 @@
 from flask_restx import Resource, fields
 from flask import Flask, request
-from app import api, app
+from app import api2, app
 from service.editWorkoutService import editWorkout
 
-@api.route('/workout/edit/<int:workout_id>')
+@api2.route('/workout/edit/<int:workout_id>')
 class EditWorkoutResource(Resource):
     def put(self, workout_id):
         data = request.json

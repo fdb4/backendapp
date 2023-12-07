@@ -1,9 +1,9 @@
-from app import api, app
+from app import api2, app
 from flask_restx import Resource, fields
 from service.viewRequestsService import viewRequests
 from flask import request
 
-view_request_model=api.model(
+view_request_model=api2.model(
     "View_request",
     {
         "clientID":fields.Integer(),
@@ -13,9 +13,9 @@ view_request_model=api.model(
 
 )
 
-@api.route('/coaches/requests/<int:clientID>')
+@api2.route('/coaches/requests/<int:clientID>')
 class ViewRequestsResource(Resource):
-    @api.marshal_list_with(view_request_model)
+    @api2.marshal_list_with(view_request_model)
     def get(self, clientID):
         """View requests for a coach"""
         return viewRequests(clientID)

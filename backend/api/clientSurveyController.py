@@ -1,9 +1,9 @@
-from app import api
+from app import api2
 from flask_restx import Resource, fields
 from flask import request, session
 from service.clientSurveyService import survey
 
-survey_model=api.model(
+survey_model=api2.model(
     'Survey',
     {
         "clientID":fields.Integer(),
@@ -24,9 +24,9 @@ survey_model=api.model(
     }
 )
 
-@api.route('/survey')
+@api2.route('/survey')
 class Survey(Resource):
-    @api.expect(survey_model)
+    @api2.expect(survey_model)
     def post(self):
         """Getting info from client surveys"""
         clientID=request.json['clientID']

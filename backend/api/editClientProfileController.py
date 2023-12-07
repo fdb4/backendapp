@@ -1,9 +1,9 @@
 from flask_restx import Resource, fields
 from flask import Flask, request
-from app import api, app
+from app import api2, app
 from service.editClientProfileService import edit_client_profile
 
-@api.route('/client/edit/<int:client_id>')
+@api2.route('/client/edit/<int:client_id>')
 class EditClientProfile(Resource):
     def put(self, client_id):
         data = request.json

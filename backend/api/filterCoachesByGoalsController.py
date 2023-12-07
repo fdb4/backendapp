@@ -1,10 +1,10 @@
 # filterCoachesByGoalsController.py
 from flask_restx import Resource, fields
-from app import api, app
+from app import api2, app
 from service.filterCoachesByGoalsService import filter_coaches_by_goal
 
 
-coach_model = api.model(
+coach_model = api2.model(
    "Coaches",
    {
        "clientID": fields.Integer(),
@@ -23,9 +23,9 @@ coach_model = api.model(
 }
   
 )
-@api.route('/coaches/filter/goal/<string:goal_type>')
+@api2.route('/coaches/filter/goal/<string:goal_type>')
 class FilterGoalResource(Resource):
-   @api.marshal_list_with(coach_model)
+   @api2.marshal_list_with(coach_model)
    def get(self, goal_type):
        """Filter coaches by goal"""
        return filter_coaches_by_goal(goal_type)

@@ -1,9 +1,9 @@
 # filterCoachesByRatingController.py
 from flask_restx import Resource, fields
-from app import api, app
+from app import api2, app
 from service.filterCoachesByRatingService import filter_coaches_by_rating
 
-coach_model = api.model(
+coach_model = api2.model(
     "Coaches",
     {
         "clientID": fields.Integer(),
@@ -20,9 +20,9 @@ coach_model = api.model(
     }
 )
 
-@api.route('/coaches/filter/rating/<string:sort_order>') # Pass "asc" for ascending or "desc" for descending
+@api2.route('/coaches/filter/rating/<string:sort_order>') # Pass "asc" for ascending or "desc" for descending
 class FilterRatingResource(Resource):
-    @api.marshal_list_with(coach_model)
+    @api2.marshal_list_with(coach_model)
     def get(self, sort_order):
         """Filter coaches by rating"""
         return filter_coaches_by_rating(sort_order)

@@ -42,3 +42,4 @@ from . import deleteCoachProfileController
 from . import adminCoachRequestController
 from . import workoutVisibilityController
 from . import getDeactivatedWorkoutsController
+from . import admincoachController

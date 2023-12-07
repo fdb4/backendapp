@@ -1,8 +1,8 @@
-from app import api, app
+from app import api2, app
 from flask_restx import Resource, fields
 from service.adminCoachRequestService import adminCoachRequest
 
-coach_model=api.model(
+coach_model=api2.model(
     "Coaches",
     {
         "coachexpID":fields.Integer(),
@@ -20,9 +20,9 @@ coach_model=api.model(
 
 )
 
-@api.route('/admin/requests')
+@api2.route('/admin/requests')
 class AdminRequestResource(Resource):
-    @api.marshal_list_with(coach_model)
+    @api2.marshal_list_with(coach_model)
     def get(self):
         """Get all requests to be a coach"""
         return adminCoachRequest()

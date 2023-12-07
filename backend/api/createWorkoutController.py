@@ -1,8 +1,8 @@
 from flask_restx import Resource, fields
 from flask import Flask, request
-from app import api, app
+from app import api2, app
 from service.createWorkoutService import createWorkout
-womod=api.model(
+womod=api2.model(
     'woModel',
     {
             "workoutname":fields.String(45),
@@ -13,9 +13,9 @@ womod=api.model(
     }
 )
 
-@api.route('/workout/create')
+@api2.route('/workout/create')
 class CreateWorkoutResource(Resource):
-    @api.expect(womod)
+    @api2.expect(womod)
     def post(self):
         data = request.json
         createWorkout(

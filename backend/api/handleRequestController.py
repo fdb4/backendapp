@@ -1,9 +1,9 @@
-from app import api, app
+from app import api2, app
 from flask_restx import Resource, fields
 from service.handleRequestService import handleRequest
 from flask import request
 
-handle_request_model=api.model(
+handle_request_model=api2.model(
     "Handle_request",
     {
         "coachID":fields.Integer(),
@@ -13,9 +13,9 @@ handle_request_model=api.model(
 
 )
 
-@api.route('/coaches/requests')
+@api2.route('/coaches/requests')
 class handleRequestResource(Resource):
-    @api.expect(handle_request_model)
+    @api2.expect(handle_request_model)
     def post(self):
         """Accept or decline a client request"""
         coachID=request.json['coachID']

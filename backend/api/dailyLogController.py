@@ -1,9 +1,9 @@
-from app import api, app
+from app import api2, app
 from flask_restx import Resource, fields
 from flask import request
 from service.dailyLogService import dailyLog
 
-log_model=api.model(
+log_model=api2.model(
     "Daily_Log",
     {
         "clientID":fields.Integer(),
@@ -14,9 +14,9 @@ log_model=api.model(
 
 )
 
-@api.route('/dailyLog')
+@api2.route('/dailyLog')
 class DailyLog(Resource):
-    @api.expect(log_model)
+    @api2.expect(log_model)
     def post(self):
         """Daily Log"""
         clientID=request.json['clientID']

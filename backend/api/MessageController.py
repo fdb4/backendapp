@@ -1,9 +1,9 @@
-from app import api, app
+from app import api2, app
 from flask_restx import Resource, fields
 from flask import request
 from service.getMessageService import getMessage
 from service.postMessageService import postMessage
-message_model=api.model(
+message_model=api2.model(
     "message",
     {
         "message":fields.String,
@@ -15,9 +15,9 @@ message_model=api.model(
 
 )
 
-@api.route('/message/<int:clientID>')
+@api2.route('/message/<int:clientID>')
 class GenMessageRescource(Resource):
-    @api.marshal_list_with(message_model)
+    @api2.marshal_list_with(message_model)
     def get(self, clientID):
         """Get all messages"""
         info = getMessage(clientID)

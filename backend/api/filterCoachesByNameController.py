@@ -1,9 +1,9 @@
 # filterCoachesByNameController.py
 from flask_restx import Resource, fields
-from app import api, app
+from app import api2, app
 from service.filterCoachesByNameService import filter_coaches_by_full_name
 
-coach_model = api.model(
+coach_model = api2.model(
     "Coaches",
     {
         "clientID": fields.Integer(),
@@ -20,9 +20,9 @@ coach_model = api.model(
     }
 )
 
-@api.route('/coaches/filter/name/<string:first_name>/<string:last_name>')
+@api2.route('/coaches/filter/name/<string:first_name>/<string:last_name>')
 class FilterFullNameResource(Resource):
-    @api.marshal_list_with(coach_model)
+    @api2.marshal_list_with(coach_model)
     def get(self, first_name, last_name):
         """Filter coaches by first and last name"""
         return filter_coaches_by_full_name(first_name, last_name)

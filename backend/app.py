@@ -9,7 +9,7 @@ app=Flask(__name__)
 CORS(app)
 app.config.from_object(DevConfig)
 db.init_app(app)
-api=Api(app,doc='/docs')
+api2=Api(app,doc='/docs')
 
 @app.shell_context_processor
 def make_shell_context():
