@@ -5,14 +5,12 @@ from sqlalchemy.sql import text
 from sqlalchemy import update;
 from flask import jsonify, session
 from service.getMessageService import getMessage
-def postMessage(clientIDR,messageT):#paramter clientID is who it is being sent to
+def postMessage(clientIDS,clientIDR,messageT):#paramter clientID is who it is being sent to
 
     #NOTE: message table has two clientIDs the first clientID is the client logged in
     #The Second is the other recipient
-    if "clientID" not in session then
-        return jsonify({"message": "Message Not sent"})
     new_message=MessageTable(
-        clientID=session["clientID"],
+        clientID=clientIDS,
         clientID2=clientIDR,
         message=messageT,
         MSender=session["clientID"],
@@ -24,9 +22,9 @@ def postMessage(clientIDR,messageT):#paramter clientID is who it is being sent t
     # Wouldn't make sense for the entry to be considered read for both partys if the other never saw it
     new_message2=MessageTable(
         clientID=clientIDR,
-        clientID2=session["clientID"],
+        clientID2=clientIDS,
         message=messageT,
-        MSender=session["clientID"],
+        MSender=clientIDS,
         MReciever =clientIDR
     )
     new_message2.save()
