@@ -9,7 +9,7 @@ def postMessage(clientIDR,messageT):#paramter clientID is who it is being sent t
 
     #NOTE: message table has two clientIDs the first clientID is the client logged in
     #The Second is the other recipient
-    if session["clientID"] is None:
+    if "clientID" not in session then
         return jsonify({"message": "Message Not sent"})
     new_message=MessageTable(
         clientID=session["clientID"],
