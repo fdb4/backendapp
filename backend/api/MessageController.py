@@ -14,6 +14,14 @@ message_model=api2.model(
     }
 
 )
+message_model2=api2.model(
+    "message",
+    {
+        "message":fields.String,
+        "clientID":fields.Integer
+    }
+
+)
 
 @api2.route('/message/<int:clientID>')
 class GenMessageRescource(Resource):
@@ -22,8 +30,11 @@ class GenMessageRescource(Resource):
         """Get all messages"""
         info = getMessage(clientID)
         return info
+
+    @api2.expect(message_model2)
     def post(self, clientID):
         message=request.json["message"]
-        info= postMessage(clientID,message)
+        clientID1=request.json["clientID"]
+        info= postMessage(clientID1,clientID,message)
         return info
 
