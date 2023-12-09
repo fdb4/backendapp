@@ -14,7 +14,7 @@ message_model=api.model(
     }
 
 )
-message_model2=api2.model(
+message_model2=api.model(
     "message2",
     {
         "message":fields.String,
