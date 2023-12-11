@@ -17,7 +17,7 @@ message_model=api.model(
 message_model2=api.model(
     "message2",
     {
-        "message":fields.String
+        "message":fields.String,
         "clientID":fields.Integer
 
     }
