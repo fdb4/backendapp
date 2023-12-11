@@ -1,5 +1,5 @@
-from app import api, app
 from flask_restx import Resource, reqparse
+from app import api
 from service.createCoachWorkoutPlanService import create_workout_plan
 
 @api.route('/create/workoutplan/coach')
@@ -12,6 +12,6 @@ class CreateWorkoutPlanResource(Resource):
     parser.add_argument('reps', required=False, type=int, help="Number of repetitions")
 
     def post(self):
-        """Create a new workout plan"""
+        """Create a new workout plan for a client by a coach"""
         data = CreateWorkoutPlanResource.parser.parse_args()
         return create_workout_plan(data)
