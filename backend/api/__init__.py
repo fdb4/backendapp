@@ -46,3 +46,5 @@ from . import createCoachWorkoutPlanController
 from . import editWorkoutPlanController
 from . import admincoachController
 from . import createClientWorkoutPlanController
+from . import getWorkoutPlanLogController
+from . import getDailyLogController
