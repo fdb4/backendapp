@@ -1,8 +1,8 @@
 from app import api, app
 from flask_restx import Resource, reqparse
-from service.createWorkoutPlanService import create_workout_plan
+from service.createCoachWorkoutPlanService import create_workout_plan
 
-@api.route('/workoutplan/create')
+@api.route('/create/workoutplan/coach')
 class CreateWorkoutPlanResource(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('planName', required=True, type=str, help="Name of the workout plan")
