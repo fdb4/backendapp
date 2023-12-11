@@ -14,7 +14,7 @@ def filterByGym(gym):
     "select c.clientID, c.email, c.firstname, c.lastname, x.price, x.rating, x.experience, x.bio, x.locationID "
     "from schema.clients c "
     "join schema.coachexp x "
-    "where c.coachexpid = x.coachexpid) info "
+    "where c.coachexpid = x.coachexpid and and x.visible = 0) info "
     "where info.locationID = l.locationID and l.gym like :gy) info2 "
     "where info2.stateID = s.StateID;")
     query = query.bindparams(gy=similar)

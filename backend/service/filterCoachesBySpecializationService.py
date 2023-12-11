@@ -25,7 +25,7 @@ def filterBySpecialization(specialization):
     FROM 
         clients c
     JOIN 
-        coachexp ce ON c.coachexpID = ce.coachexpID
+        coachexp ce ON c.coachexpID = ce.coachexpID where ce.visible = 0
     JOIN 
         workoutgoal wg ON c.workoutgoalID = wg.workoutgoalID
     JOIN 
