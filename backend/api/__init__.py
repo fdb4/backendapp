@@ -50,3 +50,4 @@ from . import getWorkoutPlanLogController
 from . import getDailyLogController
 from . import getCurrentCoachController
 from . import getActiveRequestController
+from . import logWorkoutPlanProgressController
