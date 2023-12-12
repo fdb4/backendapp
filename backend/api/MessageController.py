@@ -32,7 +32,7 @@ class GenMessageRescource(Resource):
     def get(self, clientID):
         """Get all messages"""
         clientID1 = request.json["clientID"]
-        info = getMessage(clientID1,clientID))
+        info = getMessage(clientID1,clientID)
         return info
     @api.expect(message_model2)
     def post(self, clientID):
