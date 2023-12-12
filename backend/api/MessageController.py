@@ -25,14 +25,12 @@ message_model2=api.model(
 )
 
 
-@api.route('/message/<int:clientID>')
+@api.route('/message/<int:clientID>/<int:clientID2>')
 class GenMessageRescource(Resource):
     @api.marshal_list_with(message_model)
-    @api.expect(message_model2)
-    def get(self, clientID):
+    def get(self, clientID,clientID2):
         """Get all messages"""
-        clientID1 = request.json["clientID"]
-        info = getMessage(clientID1,clientID)
+        info = getMessage(clientID2,clientID)
         return info
     @api.expect(message_model2)
     def post(self, clientID):
