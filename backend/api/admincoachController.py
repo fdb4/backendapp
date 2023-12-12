@@ -6,7 +6,7 @@ from service.admincoachService import updateCV
 acModel=api.model(
     'acModel',#admin coach Model
     {
-        "visible":fields.Boolean
+        "visible":fields.Integer()
     }
 )
 
