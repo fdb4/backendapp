@@ -25,7 +25,7 @@ def filterBySpecialization(specialization):
     FROM 
         clients c
     JOIN 
-        coachexp ce ON c.coachexpID = ce.coachexpID where ce.visible = 0
+        coachexp ce ON c.coachexpID = ce.coachexpID
     JOIN 
         workoutgoal wg ON c.workoutgoalID = wg.workoutgoalID
     JOIN 
@@ -33,7 +33,7 @@ def filterBySpecialization(specialization):
     JOIN 
         state s ON l.stateID = s.stateID
     WHERE 
-        wg.{specialization} = 1
+        wg.{specialization} = 1 and ce.visible = 0
     """)
     
     results = db.session.execute(query).fetchall()
