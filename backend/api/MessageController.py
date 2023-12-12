@@ -33,9 +33,9 @@ class GenMessageRescource(Resource):
         info = getMessage(clientID)
         return info
     @api.expect(message_model2)
-    def post(self, clientIDR):
+    def post(self, clientID):
         message=request.json["message"]
-        clientIDS=request.json["clientID"]
-        info= postMessage(clientIDS,clientIDR,message)
+        clientID1=request.json["clientID"]
+        info= postMessage(clientID1,clientID,message)
         return info
 
