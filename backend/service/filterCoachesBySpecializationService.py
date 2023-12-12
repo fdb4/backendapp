@@ -21,7 +21,7 @@ def filterBySpecialization(specialization):
         l.gym, 
         l.town, 
         s.state,
-        '{specialization}' AS specialization
+        '{specialization}' AS specializations
     FROM 
         clients c
     JOIN 
