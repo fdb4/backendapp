@@ -1,7 +1,7 @@
 from data.exts import db
 from sqlalchemy.sql import text
 
-def create_workout_plan(data):
+def create_coach_workout_plan(data):
     try:
         # Fetch coachexpID associated with the client
         coach_client_query = text("""
@@ -16,21 +16,32 @@ def create_workout_plan(data):
         if coachexpID is None:
             return {"error": "Coach experience ID not found for the given client."}, 400
 
-        # Insert the new workout plan
-        insert_query = text("""
-            INSERT INTO workoutplan (planName, clientID, coachexpID, workoutID, Sets, reps)
-            VALUES (:planName, :clientID, :coachexpID, :workoutID, :Sets, :reps)
-        """)
-        db.session.execute(insert_query, {
-            'planName': data['planName'],
-            'clientID': data['clientID'],
-            'coachexpID': coachexpID,
-            'workoutID': data['workoutID'],
-            'Sets': data['Sets'] if 'Sets' in data else None,
-            'reps': data['reps'] if 'reps' in data else None
-        })
+        # Get the highest current workoutplanID
+        max_id_query = text("SELECT MAX(workoutplanID) FROM workoutplan")
+        max_id_result = db.session.execute(max_id_query).scalar()
+
+        # Determine the next workoutplanID
+        workoutplanID = 1 if max_id_result is None else max_id_result + 1
+
+        # Insert the workout plan details
+        # Assuming each exercise is a separate entry in the 'exercises' list within data
+        for exercise in data['exercises']:
+            insert_query = text("""
+                INSERT INTO workoutplan (planName, clientID, coachexpID, workoutID, Sets, reps, workoutplanID)
+                VALUES (:planName, :clientID, :coachexpID, :workoutID, :Sets, :reps, :workoutplanID)
+            """)
+            db.session.execute(insert_query, {
+                'planName': data['planName'],
+                'clientID': data['clientID'],
+                'coachexpID': coachexpID,
+                'workoutID': exercise['workoutID'],
+                'Sets': exercise['Sets'],
+                'reps': exercise['reps'],
+                'workoutplanID': workoutplanID
+            })
+
         db.session.commit()
-        return {"message": "Workout plan created successfully"}, 201
+        return {"message": "Coach workout plan created successfully", "workoutplanID": workoutplanID}, 201
     except Exception as e:
         db.session.rollback()
         return {"error": str(e)}, 500

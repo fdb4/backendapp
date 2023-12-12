@@ -1,17 +1,33 @@
-from flask_restx import Resource, reqparse
-from app import api
-from service.createCoachWorkoutPlanService import create_workout_plan
+from flask_restx import Resource, fields
+from flask import request
+from app import api, app
+from service.createCoachWorkoutPlanService import create_coach_workout_plan
+
+# Model for exercise data
+exercise_model = api.model(
+    "ExerciseData",
+    {
+        "workoutID": fields.Integer(required=True, description="Workout ID"),
+        "Sets": fields.Integer(required=True, description="Number of sets"),
+        "reps": fields.Integer(required=True, description="Number of repetitions")
+    }
+)
+
+# Model for workout plan data
+workout_plan_model = api.model(
+    "WorkoutPlanData",
+    {
+        "planName": fields.String(required=True, description="Name of the workout plan"),
+        "clientID": fields.Integer(required=True, description="Client ID"),
+        "exercises": fields.List(fields.Nested(exercise_model), required=True, description="List of exercises")
+    }
+)
 
 @api.route('/create/workoutplan/coach')
-class CreateWorkoutPlanResource(Resource):
-    parser = reqparse.RequestParser()
-    parser.add_argument('planName', required=True, type=str, help="Name of the workout plan")
-    parser.add_argument('clientID', required=True, type=int, help="Client ID")
-    parser.add_argument('workoutID', required=True, type=int, help="Workout ID")
-    parser.add_argument('Sets', required=False, type=int, help="Number of sets")
-    parser.add_argument('reps', required=False, type=int, help="Number of repetitions")
-
+class CreateCoachWorkoutPlanResource(Resource):
+    @api.expect(workout_plan_model)
     def post(self):
         """Create a new workout plan for a client by a coach"""
-        data = CreateWorkoutPlanResource.parser.parse_args()
-        return create_workout_plan(data)
+        data = request.json
+        return create_coach_workout_plan(data)
+
