@@ -14,5 +14,5 @@ acModel=api.model(
 class admincc(Resource):
     @api.expect(acModel)
     def put(self, coachexpID):#Note add verification that user is admin
-        result=updateCV(coachexpID,request.json)
+        result=updateCV(coachexpID,request.json["visible"])
         return result
