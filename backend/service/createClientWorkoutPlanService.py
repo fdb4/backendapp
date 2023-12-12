@@ -1,25 +1,30 @@
-# service/create_client_workout_plan_service.py
-
 from data.exts import db
 from sqlalchemy.sql import text
 
-def create_client_workout_plan(planName, clientID, workoutID, Sets, reps):
+def create_workout_plan(data):
     try:
-        # Inserting the new workout plan for the client
-        query = text("""
-            INSERT INTO workoutplan (planName, clientID, workoutID, Sets, reps, coachexpID)
-            VALUES (:planName, :clientID, :workoutID, :Sets, :reps, NULL)
-        """)
+        max_id_query = text("SELECT MAX(workoutplanID) FROM workoutplan")
+        result = db.session.execute(max_id_query).scalar()
 
-        db.session.execute(query, {
-            'planName': planName,
-            'clientID': clientID,
-            'workoutID': workoutID,
-            'Sets': Sets if Sets is not None else None,
-            'reps': reps if reps is not None else None
-        })
+        workoutplanID = 1 if result is None else result + 1
+
+
+        for exercise in data['exercises']:
+            insert_query = text("""
+                INSERT INTO workoutplan (planName, clientID, workoutID, Sets, reps, workoutplanID)
+                VALUES (:planName, :clientID, :workoutID, :Sets, :reps, :workoutplanID)
+            """)
+            db.session.execute(insert_query, {
+                'planName': data['planName'],
+                'clientID': data['clientID'],
+                'workoutID': exercise['workoutID'],
+                'Sets': exercise['Sets'],
+                'reps': exercise['reps'],
+                'workoutplanID': workoutplanID
+            })
+
         db.session.commit()
-        return {"message": "Client workout plan created successfully"}, 201
+        return {"message": "Workout plan created successfully", "workoutplanID": workoutplanID}, 201
     except Exception as e:
         db.session.rollback()
         return {"error": str(e)}, 500
