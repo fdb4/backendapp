@@ -17,7 +17,7 @@ coach_model = api.model(
         "gym": fields.String(45),
         "town": fields.String(45),
         "state": fields.String(45),
-        "specializations": fields.String()  
+        "specializations": fields.List(fields.String)
     }
 )
 
