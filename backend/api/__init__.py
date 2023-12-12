@@ -52,3 +52,4 @@ from . import getCurrentCoachController
 from . import getActiveRequestController
 from . import logWorkoutPlanProgressController
 from . import unsendRequestController
+from . import fireCoachController
