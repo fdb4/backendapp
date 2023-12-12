@@ -13,7 +13,7 @@ def postMessage(clientIDS,clientIDR,messageT):#paramter clientID is who it is be
         clientID=clientIDS,
         clientID2=clientIDR,
         message=messageT,
-        MSender=session["clientID"],
+        MSender=clientIDS,
         MReciever =clientIDR,
         MRead=True
     )
