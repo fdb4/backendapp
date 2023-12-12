@@ -4,7 +4,7 @@ from sqlalchemy.orm import aliased
 from sqlalchemy.sql import text
 from sqlalchemy import update;
 from flask import jsonify, session
-def getMessage(clientID):
+def getMessage(clientID1,clientID):
     """coach=aliased(Clients)
     Message=db.session.query(
 
@@ -21,6 +21,6 @@ def getMessage(clientID):
         " inner join clients as Sender on messagetable.MSender=sender.clientID"
         " inner join clients as Reciever on messagetable.MReciever=Reciever.clientID"
         " where messagetable.clientID=:SID and messagetable.clientID2=:RID;")
-    query = query.bindparams(SID=session["clientID"],RID=clientID)
+    query = query.bindparams(SID=clientID1,RID=clientID)
     Message= db.session.execute(query).fetchall()
     return Message
