@@ -4,7 +4,7 @@ from . import searchCoachService
 
 def getCurrentCoach(clientID):
     query = text (
-        "select coachexpID from clientcoaches where clientID = :cid"
+        "select coachexpID from clientcoaches where clientID = :cid and request = 1"
     )
 
     query = query.bindparams(cid=clientID)
