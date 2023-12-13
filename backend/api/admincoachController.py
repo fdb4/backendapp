@@ -14,7 +14,7 @@ acModel=api2.model(
 class admincc(Resource):
     @api2.expect(acModel)
     def put(self, coachexpID):#Note add verification that user is admin
-        if session["isadmin"] is None:
-            return jsonify({"message":"Error client is not admin"})
-        result=updateCV(coachexpID,request.json["visible"])
+
+        test=request.json
+        result=updateCV(coachexpID,test)
         return result
