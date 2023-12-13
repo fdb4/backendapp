@@ -7,10 +7,11 @@ message_model=api.model(
     "message",
     {
         "message":fields.String,
+        "SenderID":fields.Integer,
         "SenderFN":fields.String(45),
         "SenderLN": fields.String(45),
         "lastmodified":fields.DateTime, #NOTE 0 by default
-
+        
     }
 
 )
