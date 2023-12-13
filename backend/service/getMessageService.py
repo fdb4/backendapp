@@ -16,7 +16,7 @@ def getMessage(clientID1,clientID):
     ).join(Clients, MessageTable.clientID == Clients.clientID).join(coach, MessageTable.coachexpID == coach.coachexpID).all()
     Message=Message.filter_by(MessageTable.clientID==session["clientID"])"""#have this cause why not
     query = text(
-        "SELECT  messagetable.message, sender.firstname as SenderFN,sender.lastname as SenderLN ,Reciever.firstname,Reciever.lastname,messagetable.lastmodified "
+        "SELECT  messagetable.message, sender.clientID as SenderID, sender.firstname as SenderFN,sender.lastname as SenderLN ,Reciever.firstname,Reciever.lastname,messagetable.lastmodified "
         "FROM messagetable "
         " inner join clients as Sender on messagetable.MSender=sender.clientID"
         " inner join clients as Reciever on messagetable.MReciever=Reciever.clientID"
