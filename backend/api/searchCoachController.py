@@ -19,9 +19,9 @@ coach_model = api.model(
         "specializations": fields.List(fields.String)
     }
 )
-@api.route('/coaches/<int:coachexpID>')
+@api.route('/coaches/<int:coachID>')
 class CoachSearchResource(Resource):
     @api.marshal_with(coach_model)
-    def get(self, coachexpID):
+    def get(self, coachID):
         """Get a coach by id"""
-        return searchCoach(coachexpID)
+        return searchCoach(coachID)
