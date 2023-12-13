@@ -14,7 +14,7 @@ class EditClientProfile(Resource):
             data.get('email'), 
             data.get('height'), 
             data.get('weight'), 
-            data.get('goal_weight'), 
+            data.get('goalweight'), 
             data.get('movement_type'), 
             data.get('age'), 
             data.get('gender')
