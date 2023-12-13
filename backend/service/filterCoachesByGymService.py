@@ -75,7 +75,7 @@ def filterByGym(gym):
             "gym": result[8],
             "town": result[9],
             "state": result[10],
-            "specializations": extract_specializations(result[11:])
+            "specializations": extract_specializations(result[12:])
         }
         coaches.append(coach)
 
