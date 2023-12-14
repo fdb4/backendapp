@@ -1,11 +1,25 @@
-# api/get_workout_plan_logs_controller.py
+from flask_restx import Api, Resource, fields
+from app import api, app
+from service.getWorkoutPlanLogService import get_client_workout_logs
 
-from flask_restx import Resource
-from app import api
-from service.getWorkoutPlanLogService import get_workout_plan_logs
+workout_log_model = api.model(
+    "WorkoutLog",
+    {
+        "workoutplanID": fields.Integer(),
+        "clientID": fields.Integer(),
+        "workoutID": fields.Integer(),
+        "sets": fields.Integer(),
+        "reps": fields.Integer(),
+        "lastmodified": fields.DateTime()
+    }
+)
 
-@api.route('/get/workoutplanlog/<int:client_id>')
-class WorkoutPlanLogsResource(Resource):
+@api.route('/workoutlogs/client/<int:client_id>')
+class ClientWorkoutLogsResource(Resource):
+    @api.marshal_list_with(workout_log_model)
     def get(self, client_id):
-        """Fetch workout plan logs for a specific client"""
-        return get_workout_plan_logs(client_id)
+        """Retrieve workout log progress for a specific client"""
+        return get_client_workout_logs(client_id)
+
+if __name__ == '__main__':
+    app.run(debug=True)
