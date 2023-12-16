@@ -1,27 +1,19 @@
 from data.exts import db
 from sqlalchemy.sql import text
 
-def edit_workout_plan(workoutplanID, planName, exercises):
+def update_workouts_in_plan(workoutplanID, workouts):
     try:
-        # Update planName
-        plan_name_query = text("""
-            UPDATE workoutplan
-            SET planName = :planName
-            WHERE workoutplanID = :workoutplanID
-        """)
-        db.session.execute(plan_name_query, {'planName': planName, 'workoutplanID': workoutplanID})
-
-        # Update exercises
-        for exercise in exercises:
-            exercise_query = text("""
+        for workout in workouts:
+            query = text("""
                 UPDATE workoutplan
-                SET Sets = :Sets, reps = :reps, workoutID = :workoutID
-                WHERE workoutplanID = :workoutplanID
+                SET workoutID = :workoutID, Sets = :Sets, reps = :reps
+                WHERE id = :id AND workoutplanID = :workoutplanID
             """)
-            db.session.execute(exercise_query, {
-                'Sets': exercise['Sets'],
-                'reps': exercise['reps'],
-                'workoutID': exercise['workoutID'],
+            db.session.execute(query, {
+                'id': workout['id'],
+                'workoutID': workout['workoutID'],
+                'Sets': workout['Sets'],
+                'reps': workout['reps'],
                 'workoutplanID': workoutplanID
             })
 
