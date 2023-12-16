@@ -5,6 +5,7 @@ from service.getWorkoutPlanLogService import get_client_workout_logs
 workout_log_model = api.model(
     "WorkoutLog",
     {
+        "planName": fields.String(),
         "workoutplanID": fields.Integer(),
         "clientID": fields.Integer(),
         "workoutID": fields.Integer(),
