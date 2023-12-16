@@ -6,6 +6,7 @@ from service.getWorkoutPlansService import get_client_workout_plans
 workout_plan_model = api.model(
     "WorkoutPlan",
     {
+        "id": fields.Integer(),
         "workoutplanID": fields.Integer(),
         "planName": fields.String(),
         "clientID": fields.Integer(),

@@ -5,7 +5,7 @@ from sqlalchemy.sql import text
 def get_client_workout_plans(client_id):
     query = text(
     """
-    SELECT wp.workoutplanID, wp.planName, wp.clientID, wp.coachexpID, 
+    SELECT wp.id, wp.workoutplanID, wp.planName, wp.clientID, wp.coachexpID, 
            wp.workoutID, wp.Sets, wp.reps 
     FROM workoutplan wp
     WHERE wp.clientID = :client_id
