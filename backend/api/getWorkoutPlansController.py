@@ -1,5 +1,5 @@
 
-from flask_restx import api, Resource, fields
+from flask_restx import Api, Resource, fields
 from app import api2, app
 from service.getWorkoutPlansService import get_client_workout_plans
 
