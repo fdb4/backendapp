@@ -1,9 +1,9 @@
-from app import api, app
+from app import api2, app
 from flask_restx import Resource, fields
 from service.fireCoachService import fireCoach
 from flask import request
 
-request_model=api.model(
+request_model=api2.model(
     "Request",
     {
         "clientID":fields.Integer(),
@@ -13,9 +13,9 @@ request_model=api.model(
 
 )
 
-@api.route('/client/fireCoach')
+@api2.route('/client/fireCoach')
 class fireCoachRescource(Resource):
-    @api.expect(request_model)
+    @api2.expect(request_model)
     def post(self):
         """Fire a coach"""
         clientID=request.json['clientID']
