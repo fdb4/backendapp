@@ -2,7 +2,7 @@ from app import api2, app
 from flask_restx import Resource, fields
 from flask import request
 from service.workoutVisibilityService import workoutVisibility
-
+#newcommit
 visible_model=api2.model(
     "Visible_Model",
     {
