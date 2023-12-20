@@ -31,6 +31,11 @@ jobs:
         run: pip install -r requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+      - name: Lint with Ruff  
+        run: |  
+          pip install ruff  
+          ruff --format=github --target-version=py310 .  
+        continue-on-error: true
       - name: test with pytest
         run: |
           coverage run -m pytest -v -s
