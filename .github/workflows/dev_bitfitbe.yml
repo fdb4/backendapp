@@ -34,7 +34,7 @@ jobs:
       - name: Run Unit tests
         run: |
           ls
-          python -m pytest --import-mode=append tests/tests.py
+          python -m pytest --import-mode=append backend/tests/tests.py
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
 
