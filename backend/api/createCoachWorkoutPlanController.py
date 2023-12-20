@@ -1,10 +1,10 @@
 from flask_restx import Resource, fields
 from flask import request
-from app import api, app
+from app import api2, app
 from service.createCoachWorkoutPlanService import create_coach_workout_plan
 
 # Model for exercise data
-exercise_model = api.model(
+exercise_model = api2.model(
     "ExerciseData",
     {
         "workoutID": fields.Integer(required=True, description="Workout ID"),
@@ -14,7 +14,7 @@ exercise_model = api.model(
 )
 
 # Model for workout plan data
-workout_plan_model = api.model(
+workout_plan_model = api2.model(
     "WorkoutPlanData",
     {
         "planName": fields.String(required=True, description="Name of the workout plan"),
@@ -23,9 +23,9 @@ workout_plan_model = api.model(
     }
 )
 
-@api.route('/create/workoutplan/coach')
+@api2.route('/create/workoutplan/coach')
 class CreateCoachWorkoutPlanResource(Resource):
-    @api.expect(workout_plan_model)
+    @api2.expect(workout_plan_model)
     def post(self):
         """Create a new workout plan for a client by a coach"""
         data = request.json
