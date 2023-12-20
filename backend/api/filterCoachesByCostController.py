@@ -1,9 +1,9 @@
 # filterCoachesByCostController.py
 from flask_restx import Resource, fields
-from app import api, app
+from app import api2, app
 from service.filterCoachesByCostService import filter_coaches_by_cost
 
-coach_model = api.model(
+coach_model = api2.model(
     "Coaches",
     {
         "clientID": fields.Integer(),
@@ -21,9 +21,9 @@ coach_model = api.model(
     }
 )
 
-@api.route('/coaches/filter/cost/<float:max_price>')
+@api2.route('/coaches/filter/cost/<float:max_price>')
 class FilterCostResource(Resource):
-    @api.marshal_list_with(coach_model)
+    @api2.marshal_list_with(coach_model)
     def get(self, max_price):
         """Filter coaches by cost"""
         return filter_coaches_by_cost(max_price)

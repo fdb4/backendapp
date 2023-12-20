@@ -1,8 +1,8 @@
-from app import api, app
+from app import api2, app
 from flask_restx import Resource, fields
 from service.getClientWorkoutGoalService import getClientWorkoutGoal
 
-workoutGoalClient_model=api.model(
+workoutGoalClient_model=api2.model(
     "workoutGoalClient",
     {
         "clientID":fields.Integer(),
@@ -21,9 +21,9 @@ workoutGoalClient_model=api.model(
 
 )
 
-@api.route('/workoutGoalInfo/<int:clientID>')
+@api2.route('/workoutGoalInfo/<int:clientID>')
 class ClientsWorkoutResource(Resource):
-    @api.marshal_list_with(workoutGoalClient_model)
+    @api2.marshal_list_with(workoutGoalClient_model)
     def get(self, clientID):
         """Get Workout Goal Information by ClientID"""
         info = getClientWorkoutGoal(clientID)

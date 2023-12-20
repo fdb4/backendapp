@@ -1,9 +1,9 @@
 from flask_restx import Resource, fields
 from flask import Flask, request
-from app import api, app
+from app import api2, app
 from service.getUnreadMessagesService import get_unread_message_count
 
-@api.route('/notifications/count/<int:user_id>')
+@api2.route('/notifications/count/<int:user_id>')
 class NotificationCountResource(Resource):
     def get(self, user_id):
         """Get count of unread messages for a user"""

@@ -1,6 +1,6 @@
 from data.exts import db
 from sqlalchemy.sql import text
-
+import service
 def getClients():
         query = text(
                 "select c.email, c.firstname, c.lastname "

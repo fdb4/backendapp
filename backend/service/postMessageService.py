@@ -9,6 +9,7 @@ def postMessage(clientIDS,clientIDR,messageT):#paramter clientID is who it is be
 
     #NOTE: message table has two clientIDs the first clientID is the client logged in
     #The Second is the other recipient
+
     new_message=MessageTable(
         clientID=clientIDS,
         clientID2=clientIDR,

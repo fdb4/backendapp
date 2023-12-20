@@ -1,9 +1,9 @@
-from app import api, app
+from app import api2, app
 from flask_restx import Resource, fields
 from flask import request
 from service.getConversationsService import getConversations
 
-conversation_model=api.model(
+conversation_model=api2.model(
     "Conversation",
     {
         "clientID":fields.Integer(),
@@ -13,9 +13,9 @@ conversation_model=api.model(
 
 )
 
-@api.route('/message/conversations/<int:clientID>')
+@api2.route('/message/conversations/<int:clientID>')
 class GetConversationsRescource(Resource):
-    @api.marshal_list_with(conversation_model)
+    @api2.marshal_list_with(conversation_model)
     def get(self, clientID):
         """Get all conversation previews"""
         info = getConversations(clientID)

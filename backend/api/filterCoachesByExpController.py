@@ -1,9 +1,9 @@
 # filterCoachesByExperienceController.py
 from flask_restx import Resource, fields
-from app import api, app
+from app import api2, app
 from service.filterCoachesByExpService import filter_coaches_by_experience
 
-coach_model = api.model(
+coach_model = api2.model(
     "Coaches",
     {
         "clientID": fields.Integer(),
@@ -21,9 +21,9 @@ coach_model = api.model(
     }
 )
 
-@api.route('/coaches/filter/exp/<int:min_experience>')
+@api2.route('/coaches/filter/exp/<int:min_experience>')
 class FilterExperienceResource(Resource):
-    @api.marshal_list_with(coach_model)
+    @api2.marshal_list_with(coach_model)
     def get(self, min_experience):
         """Filter coaches by experience"""
         return filter_coaches_by_experience(min_experience)

@@ -1,8 +1,8 @@
-from app import api
+from app import api2
 from flask_restx import Resource, fields
 from service.getDeactivatedWorkoutsService import getDeactivatedWorkouts
 
-workout_bank_model=api.model(
+workout_bank_model=api2.model(
     "Workout_Bank_Model",
     {
         "workoutID":fields.Integer(),
@@ -16,9 +16,9 @@ workout_bank_model=api.model(
 
 )
 
-@api.route('/workouts/deactivated')
+@api2.route('/workouts/deactivated')
 class getWorkoutsRescource(Resource):
-    @api.marshal_list_with(workout_bank_model)
+    @api2.marshal_list_with(workout_bank_model)
     def get(self):
         """Get all deactivated workouts"""
         return getDeactivatedWorkouts()
