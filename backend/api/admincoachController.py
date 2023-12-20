@@ -6,7 +6,7 @@ from service.admincoachService import updateCV
 acModel=api2.model(
     'acModel',#admin coach Model
     {
-        "visible":fields.Boolean
+        "visible":fields.Integer()
     }
 )
 
@@ -15,6 +15,5 @@ class admincc(Resource):
     @api2.expect(acModel)
     def put(self, coachexpID):#Note add verification that user is admin
 
-        test=request.json
-        result=updateCV(coachexpID,test)
+        result=updateCV(coachexpID,request.json["visible"])
         return result

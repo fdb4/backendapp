@@ -6,7 +6,7 @@ def filterWorkoutsByMuscleGroup(musclegroup):
     query = text(
         "select workoutID, workoutname, videolink, description, musclegroup, equipment "
         "from workoutbank "
-        "where musclegroup like :n and where visible = 1;")
+        "where musclegroup like :n and visible = 1;")
     query = query.bindparams(n=similar)
 
     results = db.session.execute(query).fetchall()

@@ -6,7 +6,7 @@ def filterWorkoutsByName(name):
     query = text(
         "select workoutID, workoutname, videolink, description, musclegroup, equipment "
         "from workoutbank "
-        "where workoutname like :n and where visible = 1;")
+        "where workoutname like :n and visible = 1;")
     query = query.bindparams(n=similar)
 
     results = db.session.execute(query).fetchall()

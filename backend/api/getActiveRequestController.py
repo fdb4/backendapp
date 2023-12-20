@@ -1,8 +1,9 @@
-from app import api2, app
+from app import api, app
 from flask_restx import Resource, fields
-from service.filterCoachesByGymService import filterByGym
+from service.getActiveRequestService import getActiveRequest
+from flask import request
 
-coach_model=api2.model(
+coach_model=api.model(
     "Coaches",
     {
         "clientID":fields.Integer(),
@@ -21,9 +22,10 @@ coach_model=api2.model(
 
 )
 
-@api2.route('/coaches/filter/gym/<string:gym>')
-class FilterGymResource(Resource):
-    @api2.marshal_list_with(coach_model)
-    def get(self, gym):
-        """Filter coaches by gym"""
-        return filterByGym(gym)
+@api.route('/client/requests/<int:clientID>')
+class getActiveRequestResource(Resource):
+    @api.marshal_list_with(coach_model)
+    def get(self, clientID):
+        """Any pending requests for a client"""
+
+        return getActiveRequest(clientID)

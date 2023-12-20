@@ -1,7 +1,10 @@
 from data.exts import db
 from sqlalchemy.sql import text
+from data.models import Clients
 
-def searchCoach(coachexpID):
+def searchCoach(coachID):
+    coach = Clients.query.filter_by(clientID=coachID).first()
+    coachexpID = coach.coachexpID
     query = text(
         """
         SELECT 

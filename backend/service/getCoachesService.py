@@ -50,7 +50,7 @@ def getCoaches():
                  FROM 
                     schema.clients c 
                  JOIN 
-                    schema.coachexp x ON c.coachexpid = x.coachexpid) info ON info.locationID = l.locationID) info2 ON info2.stateID = s.StateID 
+                    schema.coachexp x ON c.coachexpid = x.coachexpid where x.visible=0) info ON info.locationID = l.locationID) info2 ON info2.stateID = s.StateID 
         JOIN 
             schema.workoutgoal wg ON info2.workoutgoalID = wg.workoutgoalID;
         """

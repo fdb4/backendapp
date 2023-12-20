@@ -1,16 +1,29 @@
-from flask_restx import Resource, fields, reqparse
-from flask import Flask, request
+from flask_restx import Resource, fields
+from flask import request
 from app import api, app
 from service.editWorkoutPlanService import edit_workout_plan
 
-@api.route('/editworkoutplan/<int:workoutplanID>')
-class EditWorkoutPlanResource(Resource):
-    parser = reqparse.RequestParser()
-    parser.add_argument('planName', required=True, type=str, help="Name of the workout plan")
-    parser.add_argument('Sets', required=True, type=int, help="Number of sets")
-    parser.add_argument('reps', required=True, type=int, help="Number of repetitions")
+workout_model = api.model(
+    'Workout',
+    {
+        "workoutID": fields.Integer(required=True, description="The workout ID"),
+        "Sets": fields.Integer(required=True, description="Number of sets"),
+        "reps": fields.Integer(required=True, description="Number of repetitions")
+    }
+)
 
-    def put(self, workoutplanID):
+plan_model = api.model(
+    'EditWorkoutPlan',
+    {
+        "planName": fields.String(required=True, description="Name of the workout plan"),
+        "exercises": fields.List(fields.Nested(workout_model), required=True, description="List of exercises")
+    }
+)
+
+@api.route('/edit/workoutplan/<int:clientID>/<int:workoutplanID>')
+class EditWorkoutPlanResource(Resource):
+    @api.expect(plan_model)
+    def put(self, clientID, workoutplanID):
         """Edit a workout plan"""
-        data = EditWorkoutPlanResource.parser.parse_args()
-        return edit_workout_plan(workoutplanID, data)
+        data = request.json
+        return edit_workout_plan(clientID, workoutplanID, data)

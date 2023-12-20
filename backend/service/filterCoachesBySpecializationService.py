@@ -7,6 +7,7 @@ def filterBySpecialization(specialization):
     valid_specializations = ['cycling', 'strength', 'running', 'sports', 'yoga', 'swimming', 'martialarts', 'other']
     if specialization not in valid_specializations:
         raise ValueError("Invalid specialization")
+        
 
     query = text(f"""
     SELECT 
@@ -21,7 +22,7 @@ def filterBySpecialization(specialization):
         l.gym, 
         l.town, 
         s.state,
-        '{specialization}' AS specialization
+        wg.*
     FROM 
         clients c
     JOIN 
@@ -33,8 +34,36 @@ def filterBySpecialization(specialization):
     JOIN 
         state s ON l.stateID = s.stateID
     WHERE 
-        wg.{specialization} = 1
+        (wg.{specialization} = 1 or other is not null) and ce.visible = 0
     """)
     
     results = db.session.execute(query).fetchall()
-    return results
+    coaches = []
+    for result in results:
+        coach = {
+            "clientID": result[0],
+            "email": result[1],
+            "firstname": result[2],
+            "lastname": result[3],
+            "price": result[4],
+            "rating": result[5],
+            "experience": result[6],
+            "bio": result[7],
+            "gym": result[8],
+            "town": result[9],
+            "state": result[10],
+            "specializations": extract_specializations(result[12:])
+        }
+        coaches.append(coach)
+
+    return coaches
+
+def extract_specializations(workout_goal_data):
+    specializations = []
+    specialization_fields = ['cycling', 'strength', 'running', 'sports', 'yoga', 'swimming', 'martialarts', 'other']
+
+    for i, field in enumerate(specialization_fields):
+        if workout_goal_data[i] == 1:
+            specializations.append(field)
+
+    return specializations

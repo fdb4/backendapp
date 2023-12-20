@@ -22,4 +22,4 @@ def signUpClient(email, password, firstname, lastname, userType):
         )
         new_client.save()
         session["clientID"]=new_client.clientID
-        return jsonify({"message": "User created successfuly"})
+        return jsonify({"message": "User created successfully"})

@@ -42,4 +42,16 @@ from . import deleteCoachProfileController
 from . import adminCoachRequestController
 from . import workoutVisibilityController
 from . import getDeactivatedWorkoutsController
+from . import createCoachWorkoutPlanController
+from . import editWorkoutPlanController
 from . import admincoachController
+from . import createClientWorkoutPlanController
+from . import getWorkoutPlanLogController
+from . import getDailyLogController
+from . import getCurrentCoachController
+from . import getActiveRequestController
+from . import logWorkoutPlanProgressController
+from . import unsendRequestController
+from . import fireCoachController
+from . import getWorkoutPlansController
+
