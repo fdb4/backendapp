@@ -1,9 +1,9 @@
 from flask_restx import Resource, fields
 from flask import request
-from app import api, app
+from app import api2, app
 from service.editWorkoutPlanService import edit_workout_plan
 
-workout_model = api.model(
+workout_model = api2.model(
     'Workout',
     {
         "workoutID": fields.Integer(required=True, description="The workout ID"),
@@ -12,7 +12,7 @@ workout_model = api.model(
     }
 )
 
-plan_model = api.model(
+plan_model = api2.model(
     'EditWorkoutPlan',
     {
         "planName": fields.String(required=True, description="Name of the workout plan"),
@@ -20,9 +20,9 @@ plan_model = api.model(
     }
 )
 
-@api.route('/edit/workoutplan/<int:clientID>/<int:workoutplanID>')
+@api2.route('/edit/workoutplan/<int:clientID>/<int:workoutplanID>')
 class EditWorkoutPlanResource(Resource):
-    @api.expect(plan_model)
+    @api2.expect(plan_model)
     def put(self, clientID, workoutplanID):
         """Edit a workout plan"""
         data = request.json
