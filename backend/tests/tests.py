@@ -77,20 +77,67 @@ def test_getMessages(message,client):
     assert cl.json[0]["message"]=="Hi"
     assert cl.json[1]["message"] == "Hey"
     assert cl.json[2]["message"] == "what you want"
-@mock.patch("api.MessageController.getMessage", side_effect=tests.Mockservice.getMessage)
-def test_getMessages(message,client):
-    cl=client.get("/message/1014/1")
-    assert cl.json[0]["message"]=="Hi"
-    assert cl.json[1]["message"] == "Hey"
-    assert cl.json[2]["message"] == "what you want"
 @mock.patch("api.MessageController.postMessage", side_effect=tests.Mockservice.postMessage)
-def test_getMessages(message,client):
+def test_postMessages(message,client):
     data = {"message": "What kind of food are you click here for more info",
             "clientID": 1738}
     cl = client.post("/message/2", data=json.dumps(data), content_type='application/json')
     assert cl.json["message"]=="Message successfuly sent"
+@mock.patch("api.getWorkoutsController.getWorkouts", side_effect=tests.Mockservice.getWorkouts)
+def test_getWorkout(message,client):
+    cl= client.get("/workouts")
+    assert cl.json[0]["workoutID"]==2
+    assert cl.json[0]["equipment"]=="inlcine bench, barbell or dumbbells"
+    assert cl.json[1]["workoutID"] == 4
+    assert cl.json[1]["equipment"] == "cable machine"
+@mock.patch("api.dailyLogController.dailyLog", side_effect=tests.Mockservice.dailyLog)
+def test_postDailyLog(message,client):
+    data = {"clientID":23,
+        "calorie":2000,
+        "water":2000,
+        "mood":5,}
+    cl = client.post("/dailyLog", data=json.dumps(data), content_type='application/json')
+    assert cl.json["message"] == "Daily Log Recorded"
+@mock.patch("api.filterWorkoutsByEquipmentController.filterWorkoutsByEquipment", side_effect=tests.Mockservice.filterWorkoutsByEquipment)
+def test_filterworkoutbyEquipment(message,client):
+    cl = client.get("workouts/filter/equipment/inlcine bench, barbell or dumbbells")
+    assert cl.json[0]["workoutname"] == "Incline Bench Press"
+    cl = client.get("workouts/filter/equipment/barbell, dumbells")
+    assert cl.json[0]["workoutname"] == "Bent Over Rows"
+    assert cl.json[1]["workoutname"] == "Military Press"
+@mock.patch("api.filterCoachesByGymController.filterByGym", side_effect=tests.Mockservice.filterByGym)
+def test_filter_coaches_by_Gym(message,client):
+    cl = client.get("/coaches/filter/gym/Quimba")
+    assert cl.json[0]["firstname"] == "Samin"
+    assert cl.json[0]["lastname"] == "Test"
+    assert cl.json[0]["price"] == 53.68
+    cl = client.get("/coaches/filter/gym/Flashspan")
+    assert cl.json[0]["firstname"] == "Pauli"
+    assert cl.json[0]["lastname"] == "Blondin"
+    assert cl.json[0]["price"] == 89.47
+
+@mock.patch("api.handleRequestController.handleRequest", side_effect=tests.Mockservice.handleRequest)
+def test_handleRequests(message,client):
+    data = {"coachID":101,
+        "clientID":1,
+        "decision":1}
+    cl = client.post("/coaches/requests", data=json.dumps(data), content_type='application/json')
+    assert cl.json["message"] == "User is not a coach"
+    data = {"coachID": 1,
+            "clientID": 1,
+            "decision": 1}
+    cl = client.post("/coaches/requests", data=json.dumps(data), content_type='application/json')
+    assert cl.json["message"] == "Update successful"
+
+@mock.patch("api.viewCoachClientsController.viewCoachClients", side_effect=tests.Mockservice.viewCoachClients)
+def test_viewCoachClients(message,client):
+    cl = client.get("/coaches/clients/1")
+    assert cl.json[0]["clientID"] == 1178
+    assert cl.json[1]["clientID"] == 1212
+
 @mock.patch("api.deleteCoachProfileController.delete_coach_profile", side_effect=tests.Mockservice.delete_coach_profile)
 def test_deleteCoach(message,client):
     cl = client.delete("/coach/delete/3000")
     assert cl.json["message"]=="Coach profile deleted successfully"
     assert cl.status_code==200
+
