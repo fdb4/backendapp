@@ -1,9 +1,9 @@
-from app import api, app
+from app import api2, app
 from flask_restx import Resource, fields
 from service.unsendRequestService import unsendRequest
 from flask import request
 
-request_model=api.model(
+request_model=api2.model(
     "Request",
     {
         "clientID":fields.Integer(),
@@ -13,9 +13,9 @@ request_model=api.model(
 
 )
 
-@api.route('/client/unsendRequest')
+@api2.route('/client/unsendRequest')
 class UnrequestCoachRescource(Resource):
-    @api.expect(request_model)
+    @api2.expect(request_model)
     def post(self):
         """Unsend a request as a client"""
         clientID=request.json['clientID']
